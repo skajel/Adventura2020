@@ -1,1 +1,2 @@
-Adventura2020
+# adventura-maven
+adventura s mavenizací
