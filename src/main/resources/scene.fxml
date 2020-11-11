@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.stepan.MainController">
+    <top>
+        <VBox prefHeight="49.0" prefWidth="377.0" BorderPane.alignment="CENTER">
+            <Label fx:id="locationName" textAlignment="CENTER">
+            <font>
+               <Font size="22.0" />
+            </font></Label>
+            <Label fx:id="locationDescription" textAlignment="CENTER" />
+        </VBox>
+    </top>
+    <right>
+        <VBox>
+
+            <TitledPane expanded="true" text="Předměty">
+                <Label>
+                    <text>
+                        Predmety
+                    </text>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <VBox fx:id="items" spacing="10">
+                </VBox>
+            </TitledPane>
+            <TitledPane expanded="true" text="Inventář">
+                <Label>
+                    <text>
+                        Vychody
+                    </text>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <VBox fx:id="inventory" spacing="10">
+                </VBox>
+            </TitledPane>
+            <TitledPane expanded="true" text="Osoby">
+                <Label>
+                    <text>
+                        Osoby
+                    </text>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <VBox fx:id="people" spacing="10">
+                </VBox>
+            </TitledPane>
+            <TitledPane expanded="true" text="Východy">
+                <Label>
+                    <text>
+                        Vychody
+                    </text>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <VBox fx:id="exits" spacing="10">
+                </VBox>
+            </TitledPane>
+        </VBox>
+    </right>
+    <bottom>
+        <HBox>
+            <VBox>
+                <TextArea fx:id="textOutput" editable="false" />
+                <TextField fx:id="textInput" onKeyPressed="#onInputKeyPressed" />
+            </VBox>
+        </HBox>
+    </bottom>
+</BorderPane>

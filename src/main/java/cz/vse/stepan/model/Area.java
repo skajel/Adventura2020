@@ -1,10 +1,6 @@
 package cz.vse.stepan.model;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Třída představuje lokaci <i>(místo, místnost, prostor)</i> ve scénáři hry.
@@ -39,6 +35,17 @@ public class Area
         this.exits = new HashSet<>();
         this.items = new HashMap<>();
         this.people = new HashMap<>();
+    }
+
+    public Map<String, Item> getItemList() {return items;}
+
+    public Collection<Area> getAreaList() {return Collections.unmodifiableCollection(exits);}
+
+    public Map<String, Person> getPeopleList() {return people;}
+
+    public String getDescription()
+    {
+        return description;
     }
 
     /**
