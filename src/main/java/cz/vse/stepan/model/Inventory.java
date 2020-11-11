@@ -32,6 +32,8 @@ public class Inventory
         this.currentLoad = 0.0;
     }
 
+    public Map<String, Item> getItemsInventory() {return inventory;}
+
     /**
      * Metoda vrací celkovou kapacitu inventáře ve formátu <i>#.#</i>.
      *

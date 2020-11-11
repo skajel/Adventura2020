@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.InputStream;
 import java.util.Collection;
+import java.util.Collections;
 
 public class MainController {
 
@@ -44,7 +45,7 @@ public class MainController {
 
         updateExits();
         updateItems();
-//        updateInventory();
+        updateInventory();
         updatePeople();
     }
 
@@ -126,9 +127,32 @@ public class MainController {
         }
     }
 
-//    private void updateInventory() {
-//
-//    }
+    private void updateInventory() {
+        Collection<Item> itemList = game.getGamePlan().getInventory().getItemsInventory().values();
+        inventory.getChildren().clear();
+
+        for (Item item : itemList){
+            String itemName = item.getName();
+            Label itemLabel = new Label(itemName);
+//            InputStream stream = getClass().getClassLoader().getResourceAsStream(itemName + ".jpg");
+//            Image img = new Image(stream);
+//            ImageView imageView = new ImageView(img);
+//            imageView.setFitWidth(60);
+//            imageView.setFitHeight(60);
+//            itemLabel.setGraphic(imageView);
+
+                itemLabel.setCursor(Cursor.HAND);
+                itemLabel.setOnMouseClicked(event -> {
+                    executeCommand("poloz " + itemName);
+                })
+                ;
+
+
+            inventory.getChildren().add(itemLabel);
+        }
+
+
+    }
 
     private Area getCurrentArea() {return game.getGamePlan().getCurrentArea();}
     private void executeCommand(String command) {

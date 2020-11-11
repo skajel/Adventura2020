@@ -6,7 +6,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.stepan.MainController">
     <top>
-        <VBox prefHeight="49.0" prefWidth="377.0" BorderPane.alignment="CENTER">
+        <VBox prefHeight="49.0" prefWidth="592.0" BorderPane.alignment="CENTER">
             <Label fx:id="locationName" textAlignment="CENTER">
                 <font>
                     <Font size="22.0" />
@@ -14,7 +14,7 @@
             <Label fx:id="locationDescription" textAlignment="CENTER" />
         </VBox>
     </top>
-    <right>
+    <left>
         <VBox>
 
             <TitledPane expanded="true" text="Předměty">
@@ -66,11 +66,12 @@
                 </VBox>
             </TitledPane>
         </VBox>
-    </right>
+    </left>
     <bottom>
         <HBox>
+         <Pane prefHeight="200.0" prefWidth="200.0" />
             <VBox>
-                <TextArea fx:id="textOutput" editable="false" />
+                <TextArea fx:id="textOutput" editable="false" prefHeight="181.0" prefWidth="474.0" />
                 <TextField fx:id="textInput" onKeyPressed="#onInputKeyPressed" />
             </VBox>
         </HBox>
