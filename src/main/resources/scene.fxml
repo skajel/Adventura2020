@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -27,7 +29,7 @@
         <left>
         </left>
         <bottom>
-            <SplitPane dividerPositions="0.5, 0.5" prefHeight="300.0" prefWidth="1092.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.5, 0.5" prefHeight="300.0" BorderPane.alignment="CENTER">
                 <items>
                     <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
                     <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="300.0">
@@ -100,6 +102,12 @@
 
                     </GridPane>
                 </items>
+            <effect>
+               <InnerShadow />
+            </effect>
+            <BorderPane.margin>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </BorderPane.margin>
             </SplitPane>
         </bottom>
     </BorderPane>
