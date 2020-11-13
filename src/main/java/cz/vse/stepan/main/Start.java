@@ -47,7 +47,8 @@ public class Start extends Application
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setFullScreen(true);
+        //primaryStage.setResizable(false);
+        //primaryStage.setFullScreen(true);
         primaryStage.setTitle("Adventura");
 
         FXMLLoader loader = new FXMLLoader();
