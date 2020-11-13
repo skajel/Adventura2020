@@ -47,7 +47,7 @@ public class Start extends Application
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //primaryStage.setResizable(false);
+        primaryStage.setResizable(false);
         //primaryStage.setFullScreen(true);
         primaryStage.setTitle("Adventura");
 

@@ -27,6 +27,7 @@ public class MainController {
     public VBox items;
     public VBox people;
     public VBox inventory;
+    public ImageView imageVw;
 
     public void init(IGame game){
         this.game = game;
@@ -37,7 +38,7 @@ public class MainController {
 
     private void update () {
         String location = getCurrentArea().getName();
-        locationName.setText(location);
+        locationName.setText(location.toUpperCase());
 
         String description = getCurrentArea().getDescription();
         locationDescription.setText(description);
@@ -46,11 +47,19 @@ public class MainController {
         updateItems();
         updateInventory();
         updatePeople();
+        updateBackground();
 
 
         if(game.isGameOver()){
         textOutput.setText(game.getEpilogue());
     }
+    }
+
+    private void updateBackground(){
+        String location = getCurrentArea().getName();
+        InputStream stream = getClass().getClassLoader().getResourceAsStream(location + "1.jpg");
+        Image img = new Image(stream);
+        imageVw.setImage(img);
     }
 
     private void updateItems() {
