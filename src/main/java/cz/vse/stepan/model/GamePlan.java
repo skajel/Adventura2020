@@ -123,17 +123,17 @@ public class GamePlan
         // Vytvoříme jednotlivé předměty
         Item telefon = new Item("telefon", "Pevná linka.", 2.2, false, false);
         Item pohovka = new Item("pohovka", "Béžová pohovka, ideální pro chvíli odpočinku.");
-        Item sako = new Item(SAKO, "Černé společenské sako, které zvyšuje nosnost inventáře.", 0.0, true);
-        Item auto = new Item(VEHICLE, "Zelené auto značky Minerva z roku 1930.");
-        Item pivo = new Item(PIVO, "Vychlazená Plzeň ... když mě vypiješ, nebudeš moci řídit.", 0.0, true);
-        Item zbran = new Item(ZBRAN, "Německý samopal MP 18, ideální proti ozbrojenému přepadení.", 4.2);
+        Item sako = new Item(SAKO, "Šedé společenské sako, které zvyšuje nosnost inventáře.", 0.0, true);
+        Item auto = new Item(VEHICLE, "Bílé auto značky Minerva z roku 1930.");
+        Item pivo = new Item(PIVO, "Vychlazené pivo ... když mě vypiješ, nebudeš moci řídit.", 0.0, true);
+        Item zbran = new Item(ZBRAN, "Colt 1911, ideální proti ozbrojenému přepadení.", 4.2);
         Item voda = new Item(VODA, "Vychlazená voda z kohoutku v skleničce.", 0.0, true);
         Item klice = new Item(KLICE, "Klíče od auta, můžou se hodit pokud budeš řídit auto.", 0.4);
         Item dokument = new Item("dokument", "Smlouva o nakoupení bezpečnostního systému továrny.", 0.2);
         Item brambora = new Item("brambora", "Osamocená brambora, která zbyla po dnešním obědě.", 1.0);
-        Item stul = new Item("stul", "Dřevěný psací stůl.");
+        Item stul = new Item("stul", "Dřevěný stůl.");
         Item zrcadlo = new Item("zrcadlo", "Ne, neodpovím ti na otázku 'kdo je na světě nejkrásnější'.");
-        Item zebrik = new Item("zebrik", "Dřevěný žebřík vysoký 2.5 metru.", 7.0);
+        Item zebrik = new Item("zebrik", "Dřevěný žebřík vysoký 1.5 metru.", 7.0);
 
         items = new HashMap<>();
 
@@ -269,4 +269,7 @@ public class GamePlan
         }
         return true;
     }
+
+
 }
+

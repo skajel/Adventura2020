@@ -63,6 +63,7 @@ public class Game implements IGame
     @Override
     public String getEpilogue()
     {
+
         String epilogue = "Díky, že sis zahrál.";
 
         if (gamePlan.isVictorious()) {
@@ -83,7 +84,10 @@ public class Game implements IGame
     @Override
     public boolean isGameOver()
     {
-        return gameOver;
+        if(gamePlan.getCurrentArea().getName().equals(gamePlan.TOVARNA)){
+            return true;
+        }
+        return false;
     }
 
     /**

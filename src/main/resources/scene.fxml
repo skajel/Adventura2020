@@ -6,102 +6,102 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.stepan.MainController">
-   <SubScene height="400.0" width="250.0">
-     <root>
-       <Region />
-     </root>
-   </SubScene>
-   <BorderPane minHeight="800.0">
-      <top>
-      
-              <VBox>
-                  <Label fx:id="locationName">
-                      <font>
-                          <Font size="22.0" />
-                      </font>
-            </Label>
-                  <Label fx:id="locationDescription" />
-              </VBox>
-      </top>
-      <left>
-      </left>
-      <bottom>
-         <SplitPane dividerPositions="0.5, 0.5" prefHeight="300.0" BorderPane.alignment="CENTER">
-           <items>
-               <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-               <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="300.0">
-                  <children>
+<StackPane styleClass="lightstyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.stepan.MainController">
+    <SubScene height="400.0" visible="false" width="250.0">
+        <root>
+            <Region />
+        </root>
+    </SubScene>
+    <BorderPane minHeight="800.0">
+        <top>
+
+            <VBox>
+                <Label fx:id="locationName">
+                    <font>
+                        <Font size="22.0" />
+                    </font>
+                </Label>
+                <Label fx:id="locationDescription" />
+            </VBox>
+        </top>
+        <left>
+        </left>
+        <bottom>
+            <SplitPane dividerPositions="0.5, 0.5" prefHeight="300.0" prefWidth="1092.0" BorderPane.alignment="CENTER">
+                <items>
+                    <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                    <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="300.0">
+                        <children>
                             <TextArea fx:id="textOutput" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="270.0" />
                             <TextField fx:id="textInput" maxHeight="-Infinity" minHeight="-Infinity" onKeyPressed="#onInputKeyPressed" prefHeight="30.0" />
-                  </children>
-               </VBox>
-               <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0">
-            
-                  <children>
-               
-                                          <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Předměty" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
-                               <Label>
-                                   <text>
-                        Predmety
-                    </text>
-                                             <font>
-                                       <Font name="System Bold" size="14.0" />
-                                   </font>
-                               </Label>
-                               <VBox fx:id="items" spacing="10">
-                </VBox>
-                           </TitledPane>
-                           <TitledPane collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Inventář" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                               <Label>
-                                   <text>
-                        Vychody
-                    </text>
-                                   <font>
-                                       <Font name="System Bold" size="14.0" />
-                                   </font>
-                               </Label>
-                               <VBox fx:id="inventory" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" spacing="10">
-                </VBox>
-                           </TitledPane>
-                           <TitledPane collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Osoby" GridPane.rowIndex="1">
-                               <Label>
-                                   <text>
-                        Osoby
-                    </text>
-                                   <font>
-                                       <Font name="System Bold" size="14.0" />
-                                   </font>
-                               </Label>
-                               <VBox fx:id="people" spacing="10">
-                </VBox>
-                           </TitledPane>
-                           <TitledPane collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Východy" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                               <Label>
-                                   <text>
-                        Vychody
-                    </text>
-                                   <font>
-                                       <Font name="System Bold" size="14.0" />
-                                   </font>
-                               </Label>
-                               <VBox fx:id="exits" spacing="10">
-                </VBox>
-                           </TitledPane>
-                  </children>
-                  <columnConstraints>
-                     <ColumnConstraints />
-                     <ColumnConstraints />
-                  </columnConstraints>
-                  <rowConstraints>
-                     <RowConstraints />
-                     <RowConstraints />
-                  </rowConstraints>
-            
-               </GridPane>
-           </items>
-         </SplitPane>
-      </bottom>
-   </BorderPane>
+                        </children>
+                    </VBox>
+                    <GridPane alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0">
+
+                        <children>
+
+                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Předměty" textAlignment="CENTER" GridPane.valignment="CENTER">
+                                <Label>
+                                    <text>
+                                        Predmety
+                                    </text>
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <VBox fx:id="items" spacing="10">
+                                </VBox>
+                            </TitledPane>
+                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Inventář" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.valignment="CENTER">
+                                <Label>
+                                    <text>
+                                        Inventar
+                                    </text>
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <VBox fx:id="inventory" spacing="10">
+                                </VBox>
+                            </TitledPane>
+                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Osoby" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <Label>
+                                    <text>
+                                        Osoby
+                                    </text>
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <VBox fx:id="people" spacing="10">
+                                </VBox>
+                            </TitledPane>
+                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Východy" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <Label>
+                                    <text>
+                                        Vychody
+                                    </text>
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <VBox fx:id="exits" spacing="10">
+                                </VBox>
+                            </TitledPane>
+                        </children>
+                        <columnConstraints>
+                            <ColumnConstraints />
+                            <ColumnConstraints />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints />
+                            <RowConstraints />
+                        </rowConstraints>
+
+                    </GridPane>
+                </items>
+            </SplitPane>
+        </bottom>
+    </BorderPane>
 
 </StackPane>

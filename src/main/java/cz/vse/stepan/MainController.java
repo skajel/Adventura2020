@@ -1,9 +1,6 @@
 package cz.vse.stepan;
 
-import cz.vse.stepan.model.Area;
-import cz.vse.stepan.model.IGame;
-import cz.vse.stepan.model.Item;
-import cz.vse.stepan.model.Person;
+import cz.vse.stepan.model.*;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -34,6 +31,8 @@ public class MainController {
     public void init(IGame game){
         this.game = game;
         update();
+        textOutput.setText(game.getPrologue() + "\n\n");
+
     }
 
     private void update () {
@@ -47,6 +46,11 @@ public class MainController {
         updateItems();
         updateInventory();
         updatePeople();
+
+
+        if(game.isGameOver()){
+        textOutput.setText(game.getEpilogue());
+    }
     }
 
     private void updateItems() {
@@ -56,14 +60,22 @@ public class MainController {
         for (Item item : itemList){
             String itemName = item.getName();
             Label itemLabel = new Label(itemName);
-//            InputStream stream = getClass().getClassLoader().getResourceAsStream(itemName + ".jpg");
-//            Image img = new Image(stream);
-//            ImageView imageView = new ImageView(img);
-//            imageView.setFitWidth(60);
-//            imageView.setFitHeight(60);
-//            itemLabel.setGraphic(imageView);
+            InputStream stream = getClass().getClassLoader().getResourceAsStream(itemName + ".jpg");
+            Image img = new Image(stream);
+            ImageView imageView = new ImageView(img);
+            imageView.setFitWidth(30);
+            imageView.setFitHeight(30);
+            itemLabel.setGraphic(imageView);
 
-            if(item.isMoveable()) {
+            if(itemName.equals(game.getGamePlan().VEHICLE)){
+                itemLabel.setCursor(Cursor.HAND);
+                itemLabel.setOnMouseClicked(event -> {
+                    executeCommand("rid " + itemName);
+                })
+                ;
+            }
+
+            else if(item.isMoveable()) {
                 itemLabel.setCursor(Cursor.HAND);
                 itemLabel.setOnMouseClicked(event -> {
                     executeCommand("vezmi " + itemName);
@@ -134,12 +146,12 @@ public class MainController {
         for (Item item : itemList){
             String itemName = item.getName();
             Label itemLabel = new Label(itemName);
-//            InputStream stream = getClass().getClassLoader().getResourceAsStream(itemName + ".jpg");
-//            Image img = new Image(stream);
-//            ImageView imageView = new ImageView(img);
-//            imageView.setFitWidth(60);
-//            imageView.setFitHeight(60);
-//            itemLabel.setGraphic(imageView);
+            InputStream stream = getClass().getClassLoader().getResourceAsStream(itemName + ".jpg");
+            Image img = new Image(stream);
+            ImageView imageView = new ImageView(img);
+            imageView.setFitWidth(30);
+            imageView.setFitHeight(30);
+            itemLabel.setGraphic(imageView);
 
                 itemLabel.setCursor(Cursor.HAND);
                 itemLabel.setOnMouseClicked(event -> {
