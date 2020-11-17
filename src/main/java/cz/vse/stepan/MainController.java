@@ -1,6 +1,9 @@
 package cz.vse.stepan;
 
+import cz.vse.stepan.main.Start;
 import cz.vse.stepan.model.*;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -10,8 +13,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
+import javax.swing.*;
+import java.awt.event.MouseAdapter;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.Collections;
@@ -52,6 +58,7 @@ public class MainController {
 
         if(game.isGameOver()){
         textOutput.setText(game.getEpilogue());
+
     }
     }
 
@@ -187,5 +194,20 @@ public class MainController {
             executeCommand(textInput.getText());
             textInput.setText("");
         }
+    }
+
+    public void startNewGame(ActionEvent actionEvent) {
+//        inventory.getChildren().clear();
+//        items.getChildren().clear();
+//        exits.getChildren().clear();
+//        people.getChildren().clear();
+
+        String[] parameters = new String[1];
+        parameters[0] = "text";
+        Start.main(parameters);
+    }
+
+    public void getHint(ActionEvent actionEvent) {
+
     }
 }

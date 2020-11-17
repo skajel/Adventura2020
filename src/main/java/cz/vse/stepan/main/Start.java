@@ -42,8 +42,7 @@ public class Start extends Application
 
         } else {
             launch();
-        }
-    }
+        }}
 
     @Override
     public void start(Stage primaryStage) throws Exception {

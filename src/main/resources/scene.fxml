@@ -36,18 +36,28 @@
    </VBox>
     <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
         <top>
-
-            <VBox prefHeight="40.0">
-                <Label fx:id="locationName" textFill="WHITE">
+            <AnchorPane>
+                <MenuBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0">
+                    <Menu styleClass="lightstyle.css" text="MENU">
+                        <MenuItem onAction="#startNewGame" text="Nová hra" />
+                        <MenuItem onAction="#getHint" text="Nápověda" />
+                    </Menu>
+                </MenuBar>
+                <VBox prefHeight="40.0" AnchorPane.leftAnchor="160.0">
+                    <Label fx:id="locationName" textFill="WHITE">
+                  <font>
+                     <Font size="24.0" />
+                  </font></Label>
+                    <Label fx:id="locationDescription" textFill="WHITE">
                     <font>
-                        <Font size="22.0" />
-                    </font>
-                </Label>
-                <Label fx:id="locationDescription" textFill="WHITE" />
-            <BorderPane.margin>
-               <Insets left="30.0" />
-            </BorderPane.margin>
-            </VBox>
+                        <Font size="16.0" />
+                    </font></Label>
+                </VBox>
+                <ImageView fitHeight="50.0" fitWidth="50.0" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+               <image>
+                  <Image fx:id="settings" url="@settings.png" />
+               </image></ImageView>
+            </AnchorPane>
         </top>
         <left>
         </left>
@@ -65,53 +75,34 @@
 
                         <children>
 
-                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Předměty" textAlignment="CENTER" GridPane.valignment="CENTER">
-                                <Label>
-                                    <text>
-                                        Predmety
-                                    </text>
-                                    <font>
-                                        <Font name="System Bold" size="14.0" />
-                                    </font>
-                                </Label>
+                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="PŘEDMĚTY" textAlignment="CENTER" GridPane.valignment="CENTER">
+
                                 <VBox fx:id="items" spacing="1">
                                 </VBox>
+                        <font>
+                           <Font name="Franklin Gothic Book" size="14.0" />
+                        </font>
                             </TitledPane>
-                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Inventář" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.valignment="CENTER">
-                                <Label>
-                                    <text>
-                                        Inventar
-                                    </text>
-                                    <font>
-                                        <Font name="System Bold" size="14.0" />
-                                    </font>
-                                </Label>
+                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="INVENTÁŘ" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.valignment="CENTER">
                                 <VBox fx:id="inventory" spacing="1">
                                 </VBox>
+                                <font>
+                                    <Font name="Franklin Gothic Book" size="14.0" />
+                                </font>
                             </TitledPane>
-                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Osoby" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                <Label>
-                                    <text>
-                                        Osoby
-                                    </text>
-                                    <font>
-                                        <Font name="System Bold" size="14.0" />
-                                    </font>
-                                </Label>
+                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="OSOBY" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                 <VBox fx:id="people" spacing="1">
                                 </VBox>
+                                <font>
+                                    <Font name="Franklin Gothic Book" size="14.0" />
+                                </font>
                             </TitledPane>
-                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Východy" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                <Label>
-                                    <text>
-                                        Vychody
-                                    </text>
-                                    <font>
-                                        <Font name="System Bold" size="14.0" />
-                                    </font>
-                                </Label>
+                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="VÝCHODY" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                 <VBox fx:id="exits" spacing="1">
                                 </VBox>
+                                <font>
+                                    <Font name="Franklin Gothic Book" size="14.0" />
+                                </font>
                             </TitledPane>
                         </children>
                         <columnConstraints>
