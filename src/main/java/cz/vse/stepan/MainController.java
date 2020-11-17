@@ -36,12 +36,14 @@ public class MainController {
     public StackPane settingsMenu;
     public Button btnNo;
     public Button btnYes;
+    public ImageView map;
 
     public void init(IGame game){
         this.game = game;
         update();
         textOutput.setText(game.getPrologue() + "\n\n");
     }
+
 
     private void update () {
         String location = getCurrentArea().getName();
@@ -56,11 +58,23 @@ public class MainController {
         updatePeople();
         updateBackground();
         openSettings();
+        updateMap();
 
 
         if(game.isGameOver()){
         textOutput.appendText(game.getEpilogue());
     }
+    }
+    private void updateMap(){
+        String location = getCurrentArea().getName();
+        InputStream stream;
+        if (!game.getGamePlan().getMainCharacter().isWithArthur()) {
+            stream = getClass().getClassLoader().getResourceAsStream(location + ".jpg");
+        } else {
+            stream = getClass().getClassLoader().getResourceAsStream(location + "-a.jpg");
+        }
+        Image img = new Image(stream);
+        map.setImage(img);
     }
 
     private void updateBackground(){

@@ -65,7 +65,7 @@
         <bottom>
             <SplitPane dividerPositions="0.5, 0.5" prefHeight="300.0" BorderPane.alignment="CENTER">
                 <items>
-                    <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="map" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
                     <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="630.0">
                         <children>
                             <TextArea fx:id="textOutput" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="270.0" />

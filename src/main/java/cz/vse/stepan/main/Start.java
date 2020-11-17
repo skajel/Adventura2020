@@ -85,4 +85,9 @@ public class Start extends Application
         controller.init(hra);
         window.show();
     }
+
+    @Override
+    public void stop() throws Exception {
+        window.close();
+    }
 }
