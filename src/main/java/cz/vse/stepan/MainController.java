@@ -3,6 +3,8 @@ package cz.vse.stepan;
 import cz.vse.stepan.main.Start;
 import cz.vse.stepan.model.*;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
@@ -31,19 +33,46 @@ public class MainController {
     public VBox items;
     public VBox people;
     public VBox inventory;
-    public ImageView imageVw;
+    public ImageView imageTop;
+    public ImageView imageMid;
+    public ImageView imageBot;
     public ImageView settings;
     public StackPane settingsMenu;
     public Button btnNo;
     public Button btnYes;
     public ImageView map;
+    public ChoiceBox resolution;
 
     public void init(IGame game){
         this.game = game;
         update();
         textOutput.setText(game.getPrologue() + "\n\n");
+
+        resolution.getItems().add("1280x720");
+        resolution.getItems().add("1600x900");
+        resolution.getItems().add("1920x1080");
+        resolution.setValue("1280x720");
+
     }
 
+//    private void updateResolution(){
+//        String location = getCurrentArea().getName();
+//        int st[] = {720,900,1080};
+//
+//        resolution.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+//            InputStream stream =  getClass().getClassLoader().getResourceAsStream(location + observable +".jpg");
+//            Image img = new Image(stream);
+//            imageMid.setFitWidth(st[newValue.intValue()]);
+//            imageMid.setFitHeight(st[newValue.intValue()]-400);
+//            imageMid.setImage(img);
+//            imageTop.setFitWidth(st[newValue.intValue()]);
+//            imageBot.setFitWidth(st[newValue.intValue()]);
+//            update();
+//            }
+//        });
+//    }
 
     private void update () {
         String location = getCurrentArea().getName();
@@ -59,12 +88,15 @@ public class MainController {
         updateBackground();
         openSettings();
         updateMap();
-
+//        updateResolution();
 
         if(game.isGameOver()){
         textOutput.appendText(game.getEpilogue());
+        textInput.setVisible(false);
     }
+
     }
+
     private void updateMap(){
         String location = getCurrentArea().getName();
         InputStream stream;
@@ -81,7 +113,7 @@ public class MainController {
         String location = getCurrentArea().getName();
         InputStream stream = getClass().getClassLoader().getResourceAsStream(location + "1.jpg");
         Image img = new Image(stream);
-        imageVw.setImage(img);
+        imageMid.setImage(img);
     }
 
     private void openSettings(){
@@ -172,12 +204,12 @@ public class MainController {
         for (Person person : peopleList){
             String personName = person.getName();
             Label personLabel = new Label(personName);
-//            InputStream stream = getClass().getClassLoader().getResourceAsStream(personName + ".jpg");
-//            Image img = new Image(stream);
-//            ImageView imageView = new ImageView(img);
-//            imageView.setFitWidth(60);
-//            imageView.setFitHeight(60);
-//            itemLabel.setGraphic(imageView);
+            InputStream stream = getClass().getClassLoader().getResourceAsStream(personName + ".png");
+            Image img = new Image(stream);
+            ImageView imageView = new ImageView(img);
+            imageView.setFitWidth(40);
+            imageView.setFitHeight(40);
+            personLabel.setGraphic(imageView);
 
 
             personLabel.setCursor(Cursor.HAND);
