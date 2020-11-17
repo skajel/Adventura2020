@@ -109,12 +109,12 @@ public class MainController {
             exitLabel.setCursor(Cursor.HAND);
             exitLabel.setTooltip(new Tooltip(area.getDescription()));
 
-//            InputStream stream = getClass().getClassLoader().getResourceAsStream(exitName + ".jpg");
-//            Image img = new Image(stream);
-//            ImageView imageView = new ImageView(img);
-//            imageView.setFitWidth(60);
-//            imageView.setFitHeight(40);
-//            exitLabel.setGraphic(imageView);
+            InputStream stream = getClass().getClassLoader().getResourceAsStream(exitName + "1.jpg");
+            Image img = new Image(stream);
+            ImageView imageView = new ImageView(img);
+            imageView.setFitWidth(50);
+            imageView.setFitHeight(30);
+            exitLabel.setGraphic(imageView);
 
             exitLabel.setOnMouseClicked(event -> {
                 executeCommand("jdi "+exitName);

@@ -74,7 +74,7 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <VBox fx:id="items" spacing="10">
+                                <VBox fx:id="items" spacing="1">
                                 </VBox>
                             </TitledPane>
                             <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Inventář" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.valignment="CENTER">
@@ -86,7 +86,7 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <VBox fx:id="inventory" spacing="10">
+                                <VBox fx:id="inventory" spacing="1">
                                 </VBox>
                             </TitledPane>
                             <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Osoby" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -98,7 +98,7 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <VBox fx:id="people" spacing="10">
+                                <VBox fx:id="people" spacing="1">
                                 </VBox>
                             </TitledPane>
                             <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="Východy" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -110,7 +110,7 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <VBox fx:id="exits" spacing="10">
+                                <VBox fx:id="exits" spacing="1">
                                 </VBox>
                             </TitledPane>
                         </children>
