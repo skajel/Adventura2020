@@ -5,15 +5,13 @@ import cz.vse.stepan.model.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Cursor;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import javax.swing.*;
@@ -34,12 +32,15 @@ public class MainController {
     public VBox people;
     public VBox inventory;
     public ImageView imageVw;
+    public ImageView settings;
+    public StackPane settingsMenu;
+    public Button btnNo;
+    public Button btnYes;
 
     public void init(IGame game){
         this.game = game;
         update();
         textOutput.setText(game.getPrologue() + "\n\n");
-
     }
 
     private void update () {
@@ -54,11 +55,11 @@ public class MainController {
         updateInventory();
         updatePeople();
         updateBackground();
+        openSettings();
 
 
         if(game.isGameOver()){
-        textOutput.setText(game.getEpilogue());
-
+        textOutput.appendText(game.getEpilogue());
     }
     }
 
@@ -67,6 +68,25 @@ public class MainController {
         InputStream stream = getClass().getClassLoader().getResourceAsStream(location + "1.jpg");
         Image img = new Image(stream);
         imageVw.setImage(img);
+    }
+
+    private void openSettings(){
+        settings.setCursor(Cursor.HAND);
+        if(!settingsMenu.isVisible()) {
+            settings.setOnMouseClicked(event -> {
+            settingsMenu.setVisible(true);
+            update();
+            });}
+        if (settingsMenu.isVisible()){
+            btnNo.setOnAction(event -> {
+                settingsMenu.setVisible(false);
+            update();
+            });
+
+            btnYes.setOnAction(event1 -> {
+            });
+        }
+
     }
 
     private void updateItems() {
@@ -183,6 +203,7 @@ public class MainController {
     }
 
     private Area getCurrentArea() {return game.getGamePlan().getCurrentArea();}
+
     private void executeCommand(String command) {
         String result = game.processCommand(command);
         textOutput.appendText(result + "\n\n");
@@ -202,12 +223,13 @@ public class MainController {
 //        exits.getChildren().clear();
 //        people.getChildren().clear();
 
-        String[] parameters = new String[1];
-        parameters[0] = "text";
-        Start.main(parameters);
+//        String[] parameters = new String[1];
+//        parameters[0] = "text";
+//        Start.main(parameters);
     }
 
     public void getHint(ActionEvent actionEvent) {
-
     }
+
+
 }

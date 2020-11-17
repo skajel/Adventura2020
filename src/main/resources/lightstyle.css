@@ -9,20 +9,25 @@
 }
 
 .menu-item {
-    -fx-font-family: "Franklin Gothic Book";
+    -fx-font-family: "Franklin Gothic Demi Cond";
     -fx-font-size: 15px;
 }
 
 .label {
-    -fx-font-family: "Franklin Gothic Book";
+    -fx-font-family: "Franklin Gothic Demi Cond";
 }
 
 .text-area {
-    -fx-font-family: "Franklin Gothic Book";
+    -fx-font-family: "Franklin Gothic Demi Cond";
     -fx-font-size: 14px;
 }
 
 .text-field {
-    -fx-font-family: "Franklin Gothic Book";
+    -fx-font-family: "Franklin Gothic Demi Cond";
+    -fx-font-size: 14px;
+}
+
+.button{
+    -fx-font-family: "Franklin Gothic Demi Cond";
     -fx-font-size: 14px;
 }

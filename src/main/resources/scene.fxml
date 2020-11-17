@@ -53,10 +53,11 @@
                         <Font size="16.0" />
                     </font></Label>
                 </VBox>
-                <ImageView fitHeight="50.0" fitWidth="50.0" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+                <ImageView fx:id="settings" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" AnchorPane.rightAnchor="10.0">
                <image>
-                  <Image fx:id="settings" url="@settings.png" />
+                  <Image url="@settings.png" />
                </image></ImageView>
+            <ChoiceBox layoutX="1040.0" layoutY="13.0" prefWidth="150.0" />
             </AnchorPane>
         </top>
         <left>
@@ -131,6 +132,38 @@
             </SplitPane>
         </bottom>
     </BorderPane>
+   <StackPane fx:id="settingsMenu" prefHeight="150.0" prefWidth="200.0" visible="false">
+      <children>
+         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@wood.jpg" />
+            </image>
+            <effect>
+               <DropShadow />
+            </effect>
+         </ImageView>
+         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <Label text="UKONČIT HRU?" textFill="WHITE">
+                  <font>
+                     <Font size="28.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets top="30.0" />
+                  </VBox.margin></Label>
+               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="35.0">
+                  <children>
+                     <Button fx:id="btnYes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="ANO" />
+                     <Button fx:id="btnNo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="NE" />
+                  </children>
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+               </HBox>
+            </children>
+         </VBox>
+      </children>
+   </StackPane>
 
 
 </StackPane>

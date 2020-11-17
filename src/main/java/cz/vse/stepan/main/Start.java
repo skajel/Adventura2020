@@ -1,5 +1,6 @@
 package cz.vse.stepan.main;
 
+import com.sun.xml.internal.bind.annotation.OverrideAnnotationOf;
 import cz.vse.stepan.MainController;
 import cz.vse.stepan.model.Game;
 import cz.vse.stepan.model.IGame;
@@ -25,6 +26,7 @@ import java.util.List;
  */
 public class Start extends Application
 {
+    private Stage window;
     /**
      * Metoda pro spuštění celé aplikace.
      *
@@ -44,23 +46,43 @@ public class Start extends Application
             launch();
         }}
 
+//    @Override
+//    public void start(Stage primaryStage) throws Exception {
+//
+//        primaryStage.setResizable(false);
+//        //primaryStage.setFullScreen(true);
+//        primaryStage.setTitle("Adventura");
+//
+//        FXMLLoader loader = new FXMLLoader();
+//        InputStream stream = getClass().getClassLoader().getResourceAsStream("scene.fxml");
+//        Parent root = loader.load(stream);
+//
+//        Scene scene = new Scene(root);
+//        primaryStage.setScene(scene);
+//
+//        MainController controller = loader.getController();
+//        IGame hra = new Game();
+//        controller.init(hra);
+//        primaryStage.show();
+//}
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setResizable(false);
+        window=primaryStage;
+        window.setResizable(false);
         //primaryStage.setFullScreen(true);
-        primaryStage.setTitle("Adventura");
+        window.setTitle("Adventura");
 
         FXMLLoader loader = new FXMLLoader();
         InputStream stream = getClass().getClassLoader().getResourceAsStream("scene.fxml");
         Parent root = loader.load(stream);
 
         Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
+        window.setScene(scene);
 
         MainController controller = loader.getController();
         IGame hra = new Game();
         controller.init(hra);
-        primaryStage.show();
-
-
-}}
+        window.show();
+    }
+}
