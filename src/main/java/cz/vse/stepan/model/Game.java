@@ -66,11 +66,11 @@ public class Game implements IGame
 
         String epilogue = "Díky, že sis zahrál.";
 
-        if (gamePlan.isVictorious()) {
+        if (gamePlan.isVictorious() && gamePlan.getCurrentArea().getName().equals(gamePlan.TOVARNA)) {
             epilogue = "Narazil jsi na zloděje. Sice se snažil utéct, ale tobě se podařilo zloděje zastavit výstřelem ze zbraně. \n"
             + "ZVÍTĚZIL JSI!\n" + epilogue;
         }
-        else {
+        else if (gamePlan.getCurrentArea().getName().equals(gamePlan.TOVARNA)){
             epilogue = "Narazil jsi na zloděje, který byl ozbrojený, ty však nemáš zbraň, kterou ho můžeš zabít.\n"
             + "PROHRÁL JSI, ZKUS HRU ZNOVA!\n"+ epilogue;
         }
@@ -84,7 +84,7 @@ public class Game implements IGame
     @Override
     public boolean isGameOver()
     {
-        if(gamePlan.getCurrentArea().getName().equals(gamePlan.TOVARNA)){
+        if(gameOver == true || gamePlan.getCurrentArea().getName().equals(gamePlan.TOVARNA)){
             return true;
         }
         return false;
