@@ -49,12 +49,12 @@ public class Game implements IGame
     public String getPrologue()
     {
         return "Vítejte v textové adventuře 'Nebezpečí v továrně!'\n"
-        + "Píše se rok 1933. Nacházíš se ve svém bytě na ulici James St. ve městě Birmingham.\n"
-        + "Zrovna ses chystal ke spánku, když vrátný naléhavě volá, že se spustil alarm v jedné z tvých továren.\n"
-        + "Je to planý poplach, nebo se jedná o zloděje?! Prověř celou situaci. \n\n"
-        + "Napiš 'napoveda', pokud si nevíš rady, jak hrát dál.\n"
-        + "\n"
-        + gamePlan.getCurrentArea().getFullDescription();
+                + "Píše se rok 1933. Nacházíš se ve svém bytě na ulici James St. ve městě Birmingham.\n"
+                + "Zrovna ses chystal ke spánku, když vrátný naléhavě volá, že se spustil alarm v jedné z tvých továren.\n"
+                + "Je to planý poplach, nebo se jedná o zloděje?! Prověř celou situaci. \n\n"
+                + "Napiš 'napoveda', pokud si nevíš rady, jak hrát dál.\n"
+                + "\n"
+                + gamePlan.getCurrentArea().getFullDescription();
     }
 
     /**
@@ -63,15 +63,16 @@ public class Game implements IGame
     @Override
     public String getEpilogue()
     {
+
         String epilogue = "Díky, že sis zahrál.";
 
-        if (gamePlan.isVictorious()) {
+        if (gamePlan.isVictorious() && gamePlan.getCurrentArea().getName().equals(gamePlan.TOVARNA)) {
             epilogue = "Narazil jsi na zloděje. Sice se snažil utéct, ale tobě se podařilo zloděje zastavit výstřelem ze zbraně. \n"
-            + "ZVÍTĚZIL JSI!\n" + epilogue;
+                    + "ZVÍTĚZIL JSI!\n" + epilogue;
         }
-        else {
+        else if (gamePlan.getCurrentArea().getName().equals(gamePlan.TOVARNA)){
             epilogue = "Narazil jsi na zloděje, který byl ozbrojený, ty však nemáš zbraň, kterou ho můžeš zabít.\n"
-            + "PROHRÁL JSI, ZKUS HRU ZNOVA!\n"+ epilogue;
+                    + "PROHRÁL JSI, ZKUS HRU ZNOVA!\n"+ epilogue;
         }
 
         return epilogue;
@@ -83,7 +84,10 @@ public class Game implements IGame
     @Override
     public boolean isGameOver()
     {
-        return gameOver;
+        if(gameOver == true || gamePlan.getCurrentArea().getName().equals(gamePlan.TOVARNA)){
+            return true;
+        }
+        return false;
     }
 
     /**
