@@ -26,7 +26,6 @@ import java.util.List;
  */
 public class Start extends Application
 {
-    private Stage window;
     /**
      * Metoda pro spuštění celé aplikace.
      *
@@ -46,48 +45,23 @@ public class Start extends Application
             launch();
         }}
 
-//    @Override
-//    public void start(Stage primaryStage) throws Exception {
-//
-//        primaryStage.setResizable(false);
-//        //primaryStage.setFullScreen(true);
-//        primaryStage.setTitle("Adventura");
-//
-//        FXMLLoader loader = new FXMLLoader();
-//        InputStream stream = getClass().getClassLoader().getResourceAsStream("scene.fxml");
-//        Parent root = loader.load(stream);
-//
-//        Scene scene = new Scene(root);
-//        primaryStage.setScene(scene);
-//
-//        MainController controller = loader.getController();
-//        IGame hra = new Game();
-//        controller.init(hra);
-//        primaryStage.show();
-//}
-
     @Override
     public void start(Stage primaryStage) throws Exception {
-        window=primaryStage;
-        window.setResizable(false);
-        //primaryStage.setFullScreen(true);
-        window.setTitle("Adventura");
+
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Adventura");
 
         FXMLLoader loader = new FXMLLoader();
         InputStream stream = getClass().getClassLoader().getResourceAsStream("scene.fxml");
         Parent root = loader.load(stream);
 
         Scene scene = new Scene(root);
-        window.setScene(scene);
+        primaryStage.setScene(scene);
 
         MainController controller = loader.getController();
         IGame hra = new Game();
         controller.init(hra);
-        window.show();
-    }
+        primaryStage.show();
+}
 
-    @Override
-    public void stop() throws Exception {
-        window.close();
-    }
 }
