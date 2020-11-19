@@ -17,6 +17,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -43,6 +45,10 @@ public class MainController {
     public Button btnNo;
     public Button btnYes;
     public ImageView map;
+    public Circle hackBtn;
+    public CheckMenuItem on;
+    public CheckMenuItem off;
+    public MenuItem winnable;
 
 
     public void init(IGame game) {
@@ -71,8 +77,24 @@ public class MainController {
         textOutput.appendText(game.getEpilogue());
         textInput.setVisible(false);
     }
-
     }
+
+    public void turnHacksOn(ActionEvent actionEvent) {
+        if (off.isSelected()){
+            off.setSelected(false);
+        }
+        hackBtn.setFill(Color.rgb(0,255,0));
+        winnable.setVisible(true);
+    }
+
+    public void turnHacksOff(ActionEvent actionEvent) {
+        if (on.isSelected()){
+            on.setSelected(false);
+        }
+        hackBtn.setFill(Color.rgb(255,0,0));
+        winnable.setVisible(false);
+    }
+
 
     private void updateMap(){
         String location = getCurrentArea().getName();
@@ -249,15 +271,12 @@ public class MainController {
         }
     }
 
-    public void startNewGame(ActionEvent actionEvent){
-        init(new Game());
-    }
-
     public void getHint(ActionEvent actionEvent) {
     }
 
 
     public void set1920(ActionEvent actionEvent) throws IOException {
+        executeCommand("konec\n\n");
         Stage primaryStage = new Stage();
         primaryStage.setResizable(false);
         primaryStage.setTitle("Adventura");
@@ -279,6 +298,7 @@ public class MainController {
     }
 
     public void set1600(ActionEvent actionEvent) throws IOException {
+        executeCommand("konec\n\n");
         Stage primaryStage = new Stage();
         primaryStage.setResizable(false);
         primaryStage.setTitle("Adventura");
@@ -286,7 +306,6 @@ public class MainController {
         FXMLLoader loader = new FXMLLoader();
         InputStream str = getClass().getClassLoader().getResourceAsStream("scene2.fxml");
         Parent root = loader.load(str);
-
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -298,6 +317,7 @@ public class MainController {
     }
 
     public void set1280(ActionEvent actionEvent) throws IOException {
+        executeCommand("konec\n\n");
         Stage primaryStage = new Stage();
         primaryStage.setResizable(false);
         primaryStage.setTitle("Adventura");
@@ -315,4 +335,9 @@ public class MainController {
         controller.init(hra);
         primaryStage.show();
     }
+
+    public void winGame(ActionEvent actionEvent) {
+    }
 }
+
+

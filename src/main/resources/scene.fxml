@@ -5,6 +5,7 @@
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <StackPane id="pane" stylesheets="lightstyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.stepan.MainController">
@@ -39,8 +40,15 @@
             <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0">
                 <MenuBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0">
                     <Menu styleClass="lightstyle.css" text="MENU">
-                        <MenuItem onAction="#startNewGame" text="Nová hra" />
+                  <Menu mnemonicParsing="false" text="Nová hra">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#set1920" text="1920X1080" />
+                        <MenuItem mnemonicParsing="false" onAction="#set1600" text="1600X900" />
+                    <MenuItem mnemonicParsing="false" onAction="#set1280" text="1280X720" />
+                     </items>
+                  </Menu>
                         <MenuItem onAction="#getHint" text="Nápověda" />
+                  <MenuItem fx:id="winnable" mnemonicParsing="false" onAction="#winGame" text="Vyhrát" visible="false" />
                     </Menu>
                 </MenuBar>
                 <VBox prefHeight="40.0" AnchorPane.leftAnchor="160.0">
@@ -53,21 +61,20 @@
                         <Font size="16.0" />
                     </font></Label>
                 </VBox>
-                <ImageView fx:id="settings" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" AnchorPane.rightAnchor="160.0">
+                <ImageView fx:id="settings" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" AnchorPane.rightAnchor="10.0">
                <image>
                   <Image url="@settings.png" />
                </image></ImageView>
-            <MenuBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <MenuBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0">
               <menus>
-                <Menu mnemonicParsing="false" text="ROZLIŠENÍ">
-                  <items>
-                        <MenuItem mnemonicParsing="false" onAction="#set1920" text="1920X1080" />
-                        <MenuItem mnemonicParsing="false" onAction="#set1600" text="1600X900" />
-                    <MenuItem mnemonicParsing="false" onAction="#set1280" text="1280X720" />
-                  </items>
-                </Menu>
+                <Menu mnemonicParsing="false" text="HACKING">
+                     <items>
+                        <CheckMenuItem fx:id="on" mnemonicParsing="false" onAction="#turnHacksOn" text="Zapnout" />
+                        <CheckMenuItem fx:id="off" mnemonicParsing="false" onAction="#turnHacksOff" text="Vypnout" />
+                     </items></Menu>
               </menus>
             </MenuBar>
+            <Circle fx:id="hackBtn" fill="RED" radius="10.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="15.0" />
             </AnchorPane>
         </top>
         <left>
