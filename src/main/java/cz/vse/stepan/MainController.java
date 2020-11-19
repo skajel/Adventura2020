@@ -39,36 +39,12 @@ public class MainController {
     public ImageView map;
     public ChoiceBox resolution;
 
-    public void init(IGame game){
+    public void init(IGame game) {
         this.game = game;
         update();
         textOutput.setText(game.getPrologue() + "\n\n");
 
-//        resolution.getItems().add("1280x720");
-//        resolution.getItems().add("1600x900");
-//        resolution.getItems().add("1920x1080");
-//        resolution.setValue("1280x720");
-
     }
-
-//    private void updateResolution(){
-//        String location = getCurrentArea().getName();
-//        int st[] = {720,900,1080};
-//
-//        resolution.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-//            @Override
-//            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-//            InputStream stream =  getClass().getClassLoader().getResourceAsStream(location + observable +".jpg");
-//            Image img = new Image(stream);
-//            imageMid.setFitWidth(st[newValue.intValue()]);
-//            imageMid.setFitHeight(st[newValue.intValue()]-400);
-//            imageMid.setImage(img);
-//            imageTop.setFitWidth(st[newValue.intValue()]);
-//            imageBot.setFitWidth(st[newValue.intValue()]);
-//            update();
-//            }
-//        });
-//    }
 
     private void update () {
         String location = getCurrentArea().getName();
