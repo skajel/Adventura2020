@@ -2,10 +2,14 @@ package cz.vse.stepan;
 
 import cz.vse.stepan.model.*;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -14,7 +18,14 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+
+import java.awt.*;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.util.Collection;
 
 
@@ -37,7 +48,11 @@ public class MainController {
     public Button btnNo;
     public Button btnYes;
     public ImageView map;
-    public ChoiceBox resolution;
+    public Circle hackBtn;
+    public CheckMenuItem on;
+    public CheckMenuItem off;
+    public MenuItem winnable;
+
 
     public void init(IGame game) {
         this.game = game;
@@ -60,14 +75,29 @@ public class MainController {
         updateBackground();
         openSettings();
         updateMap();
-//        updateResolution();
 
         if(game.isGameOver()){
         textOutput.appendText(game.getEpilogue());
         textInput.setVisible(false);
     }
-
     }
+
+    public void turnHacksOn(ActionEvent actionEvent) {
+        if (off.isSelected()){
+            off.setSelected(false);
+        }
+        hackBtn.setFill(Color.rgb(0,255,0));
+        winnable.setVisible(true);
+    }
+
+    public void turnHacksOff(ActionEvent actionEvent) {
+        if (on.isSelected()){
+            on.setSelected(false);
+        }
+        hackBtn.setFill(Color.rgb(255,0,0));
+        winnable.setVisible(false);
+    }
+
 
     private void updateMap(){
         String location = getCurrentArea().getName();
@@ -82,9 +112,17 @@ public class MainController {
     }
 
     private void updateBackground(){
+        InputStream str;
         String location = getCurrentArea().getName();
-        InputStream stream = getClass().getClassLoader().getResourceAsStream(location + "1.jpg");
-        Image img = new Image(stream);
+        if(imageMid.getFitWidth()==1920) {
+            str = getClass().getClassLoader().getResourceAsStream(location + "3.jpg");
+        }
+        else if (imageMid.getFitWidth()==1600) {
+            str = getClass().getClassLoader().getResourceAsStream(location + "2.jpg");
+        }else{
+            str = getClass().getClassLoader().getResourceAsStream(location + "1.jpg");
+        }
+        Image img = new Image(str);
         imageMid.setImage(img);
     }
 
@@ -236,11 +274,80 @@ public class MainController {
         }
     }
 
-    public void startNewGame(ActionEvent actionEvent){
-        init(new Game());
-    }
-
     public void getHint(ActionEvent actionEvent) {
+        try {
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            URI oURL = new URI("https://online.fliphtml5.com/vwlig/efia/#p=1");
+            desktop.browse(oURL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+
+    public void set1920(ActionEvent actionEvent) throws IOException {
+        executeCommand("konec\n\n");
+        Stage primaryStage = new Stage();
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Adventura");
+
+        FXMLLoader loader = new FXMLLoader();
+        InputStream str = getClass().getClassLoader().getResourceAsStream("scene3.fxml");
+        Parent root = loader.load(str);
+
+
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+
+        MainController controller = loader.getController();
+        IGame hra = new Game();
+        controller.init(hra);
+        primaryStage.show();
+
+
+    }
+
+    public void set1600(ActionEvent actionEvent) throws IOException {
+        executeCommand("konec\n\n");
+        Stage primaryStage = new Stage();
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Adventura");
+
+        FXMLLoader loader = new FXMLLoader();
+        InputStream str = getClass().getClassLoader().getResourceAsStream("scene2.fxml");
+        Parent root = loader.load(str);
+
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+
+        MainController controller = loader.getController();
+        IGame hra = new Game();
+        controller.init(hra);
+        primaryStage.show();
+    }
+
+    public void set1280(ActionEvent actionEvent) throws IOException {
+        executeCommand("konec\n\n");
+        Stage primaryStage = new Stage();
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Adventura");
+
+        FXMLLoader loader = new FXMLLoader();
+        InputStream str = getClass().getClassLoader().getResourceAsStream("scene.fxml");
+        Parent root = loader.load(str);
+
+
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+
+        MainController controller = loader.getController();
+        IGame hra = new Game();
+        controller.init(hra);
+        primaryStage.show();
+    }
+
+    public void winGame(ActionEvent actionEvent) {
+    }
 }
+
+
