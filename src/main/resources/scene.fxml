@@ -75,6 +75,7 @@
               </menus>
             </MenuBar>
             <Circle fx:id="hackBtn" fill="RED" radius="10.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="15.0" />
+            <VBox prefHeight="50.0" prefWidth="100.0" AnchorPane.rightAnchor="300.0" />
             </AnchorPane>
         </top>
         <left>
@@ -148,6 +149,21 @@
             </padding>
             </SplitPane>
         </bottom>
+      <right>
+         <AnchorPane BorderPane.alignment="CENTER">
+            <children>
+               <VBox prefHeight="40.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">
+                  <children>
+                     <Label fx:id="locationDescription1" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="verze 1.0.0" textFill="WHITE" />
+                     <Label fx:id="locationName1" alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="autor: Ondřej Štěpán" textFill="WHITE">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </VBox>
+            </children></AnchorPane>
+      </right>
     </BorderPane>
    <StackPane fx:id="settingsMenu" prefHeight="150.0" prefWidth="200.0" visible="false">
       <children>
