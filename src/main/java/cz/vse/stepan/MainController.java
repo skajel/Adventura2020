@@ -379,7 +379,7 @@ public class MainController {
                break;
         }
         }
-        dropItems();
+        //dropItems();
         letsWin();
 
     }
@@ -414,6 +414,7 @@ public class MainController {
                     case GamePlan.KLICE:
                         break;
                 }
+                break;
             }
         }
 
@@ -444,6 +445,8 @@ public class MainController {
         }
 
     }
+
+
 }
 
 
