@@ -195,7 +195,7 @@ public class MainController {
             Label exitLabel = new Label(exitName);
             exitLabel.setTooltip(new Tooltip(area.getDescription()));
 
-            InputStream stream = getClass().getClassLoader().getResourceAsStream(exitName + "1.jpg");
+            InputStream stream = getClass().getClassLoader().getResourceAsStream(exitName + "3.jpg");
             Image img = new Image(stream);
             ImageView imageView = new ImageView(img);
             imageView.setFitWidth(50);
@@ -379,7 +379,7 @@ public class MainController {
                break;
         }
         }
-        //dropItems();
+        dropItems();
         letsWin();
 
     }
@@ -414,7 +414,7 @@ public class MainController {
                     case GamePlan.KLICE:
                         break;
                 }
-                break;
+            break;
             }
         }
 
