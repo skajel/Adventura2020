@@ -1,0 +1,16 @@
+vezmi sako
+jdi pracovna
+vezmi klice
+jdi chodba
+jdi obyvak
+promluv arthur
+jdi kuchyne
+vezmi voda
+jdi obyvak
+jdi chodba
+jdi sklep
+vezmi zbran
+jdi chodba
+jdi garaz
+rid auto
+jdi tovarna

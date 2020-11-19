@@ -1,5 +1,6 @@
 package cz.vse.stepan;
 
+import cz.vse.stepan.main.Start;
 import cz.vse.stepan.model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -23,10 +24,10 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URI;
 import java.util.Collection;
+import java.util.Set;
 
 
 public class MainController {
@@ -190,7 +191,6 @@ public class MainController {
         for (Area area : exitList) {
             String exitName = area.getName();
             Label exitLabel = new Label(exitName);
-            exitLabel.setCursor(Cursor.HAND);
             exitLabel.setTooltip(new Tooltip(area.getDescription()));
 
             InputStream stream = getClass().getClassLoader().getResourceAsStream(exitName + "1.jpg");
@@ -200,6 +200,7 @@ public class MainController {
             imageView.setFitHeight(30);
             exitLabel.setGraphic(imageView);
 
+            exitLabel.setCursor(Cursor.HAND);
             exitLabel.setOnMouseClicked(event -> {
                 executeCommand("jdi "+exitName);
             });
@@ -284,9 +285,9 @@ public class MainController {
         }
     }
 
-
     public void set1920(ActionEvent actionEvent) throws IOException {
         executeCommand("konec\n\n");
+
         Stage primaryStage = new Stage();
         primaryStage.setResizable(false);
         primaryStage.setTitle("Adventura");
@@ -347,6 +348,63 @@ public class MainController {
     }
 
     public void winGame(ActionEvent actionEvent) {
+        while (!getCurrentArea().getName().equals(GamePlan.LOZNICE)){
+        String location = getCurrentArea().getName();
+        switch (location) {
+           case GamePlan.TOVARNA:
+               executeCommand("jdi " + GamePlan.VRATNICE);
+               break;
+           case GamePlan.VRATNICE:
+               executeCommand("jdi " + GamePlan.GARAZ);
+               break;
+           case GamePlan.GARAZ:
+               executeCommand("jdi " + GamePlan.CHODBA);
+               break;
+           case GamePlan.SKLEP:
+               executeCommand("jdi " + GamePlan.CHODBA);
+               break;
+           case GamePlan.CHODBA:
+               executeCommand("jdi " + GamePlan.PRACOVNA);
+               break;
+           case GamePlan.KUCHYNE:
+               executeCommand("jdi " + GamePlan.OBYVAK);
+               break;
+           case GamePlan.PRACOVNA:
+               executeCommand("jdi " + GamePlan.LOZNICE);
+               break;
+           case GamePlan.OBYVAK:
+               executeCommand("jdi " + GamePlan.LOZNICE);
+               break;
+        }
+        }
+        if (!game.getGamePlan().getInventory().getItemsInventory().isEmpty()) {
+            Collection<String> itemList = getCurrentArea().getItemList().keySet();
+
+            for (String item : itemList){
+                if (!item.equals(GamePlan.ZBRAN) || !item.equals(GamePlan.KLICE)) {
+                    executeCommand("poloz " + item);
+                }
+
+            }
+        }
+        letsWin();
+
+    }
+
+    public void letsWin(){
+        try {
+            BufferedReader read = new BufferedReader(new FileReader("vyhra.txt"));
+            String line = read.readLine();
+            while (line != null){
+                executeCommand(line);
+                line = read.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
