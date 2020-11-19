@@ -2,7 +2,10 @@ package cz.vse.stepan;
 
 import cz.vse.stepan.model.*;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,6 +17,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 
@@ -37,38 +43,14 @@ public class MainController {
     public Button btnNo;
     public Button btnYes;
     public ImageView map;
-    public ChoiceBox resolution;
 
-    public void init(IGame game){
+
+    public void init(IGame game) {
         this.game = game;
         update();
         textOutput.setText(game.getPrologue() + "\n\n");
 
-//        resolution.getItems().add("1280x720");
-//        resolution.getItems().add("1600x900");
-//        resolution.getItems().add("1920x1080");
-//        resolution.setValue("1280x720");
-
     }
-
-//    private void updateResolution(){
-//        String location = getCurrentArea().getName();
-//        int st[] = {720,900,1080};
-//
-//        resolution.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-//            @Override
-//            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-//            InputStream stream =  getClass().getClassLoader().getResourceAsStream(location + observable +".jpg");
-//            Image img = new Image(stream);
-//            imageMid.setFitWidth(st[newValue.intValue()]);
-//            imageMid.setFitHeight(st[newValue.intValue()]-400);
-//            imageMid.setImage(img);
-//            imageTop.setFitWidth(st[newValue.intValue()]);
-//            imageBot.setFitWidth(st[newValue.intValue()]);
-//            update();
-//            }
-//        });
-//    }
 
     private void update () {
         String location = getCurrentArea().getName();
@@ -84,7 +66,6 @@ public class MainController {
         updateBackground();
         openSettings();
         updateMap();
-//        updateResolution();
 
         if(game.isGameOver()){
         textOutput.appendText(game.getEpilogue());
@@ -106,9 +87,17 @@ public class MainController {
     }
 
     private void updateBackground(){
+        InputStream str;
         String location = getCurrentArea().getName();
-        InputStream stream = getClass().getClassLoader().getResourceAsStream(location + "1.jpg");
-        Image img = new Image(stream);
+        if(imageMid.getFitWidth()==1920) {
+            str = getClass().getClassLoader().getResourceAsStream(location + "3.jpg");
+        }
+        else if (imageMid.getFitWidth()==1600) {
+            str = getClass().getClassLoader().getResourceAsStream(location + "2.jpg");
+        }else{
+            str = getClass().getClassLoader().getResourceAsStream(location + "1.jpg");
+        }
+        Image img = new Image(str);
         imageMid.setImage(img);
     }
 
@@ -267,4 +256,63 @@ public class MainController {
     public void getHint(ActionEvent actionEvent) {
     }
 
+
+    public void set1920(ActionEvent actionEvent) throws IOException {
+        Stage primaryStage = new Stage();
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Adventura");
+
+        FXMLLoader loader = new FXMLLoader();
+        InputStream str = getClass().getClassLoader().getResourceAsStream("scene3.fxml");
+        Parent root = loader.load(str);
+
+
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+
+        MainController controller = loader.getController();
+        IGame hra = new Game();
+        controller.init(hra);
+        primaryStage.show();
+
+
+    }
+
+    public void set1600(ActionEvent actionEvent) throws IOException {
+        Stage primaryStage = new Stage();
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Adventura");
+
+        FXMLLoader loader = new FXMLLoader();
+        InputStream str = getClass().getClassLoader().getResourceAsStream("scene2.fxml");
+        Parent root = loader.load(str);
+
+
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+
+        MainController controller = loader.getController();
+        IGame hra = new Game();
+        controller.init(hra);
+        primaryStage.show();
+    }
+
+    public void set1280(ActionEvent actionEvent) throws IOException {
+        Stage primaryStage = new Stage();
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Adventura");
+
+        FXMLLoader loader = new FXMLLoader();
+        InputStream str = getClass().getClassLoader().getResourceAsStream("scene.fxml");
+        Parent root = loader.load(str);
+
+
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+
+        MainController controller = loader.getController();
+        IGame hra = new Game();
+        controller.init(hra);
+        primaryStage.show();
+    }
 }
