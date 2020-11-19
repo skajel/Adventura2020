@@ -70,7 +70,7 @@
                 <Menu mnemonicParsing="false" text="HACKING">
                      <items>
                         <CheckMenuItem fx:id="on" mnemonicParsing="false" onAction="#turnHacksOn" text="Zapnout" />
-                        <CheckMenuItem fx:id="off" mnemonicParsing="false" onAction="#turnHacksOff" text="Vypnout" />
+                        <CheckMenuItem fx:id="off" mnemonicParsing="false" onAction="#turnHacksOff" selected="true" text="Vypnout" />
                      </items></Menu>
               </menus>
             </MenuBar>

@@ -25,7 +25,9 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
@@ -377,16 +379,7 @@ public class MainController {
                break;
         }
         }
-        if (!game.getGamePlan().getInventory().getItemsInventory().isEmpty()) {
-            Collection<String> itemList = getCurrentArea().getItemList().keySet();
-
-            for (String item : itemList){
-                if (!item.equals(GamePlan.ZBRAN) || !item.equals(GamePlan.KLICE)) {
-                    executeCommand("poloz " + item);
-                }
-
-            }
-        }
+        dropItems();
         letsWin();
 
     }
@@ -403,6 +396,51 @@ public class MainController {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+    }
+
+    public void dropItems(){
+        Collection<Item> itemList = game.getGamePlan().getInventory().getItemsInventory().values();
+
+            for (Item item : itemList) {
+                String itemName = item.getName();
+                switch (itemName) {
+                    default:
+                        executeCommand("poloz " + itemName);
+                        break;
+                    case GamePlan.ZBRAN:
+                        break;
+                    case GamePlan.KLICE:
+                        break;
+                }
+            }
+        }
+
+
+    public void dropItems2(){
+        Set<String> itemList = game.getGamePlan().getInventory().getItemsInventory().keySet();
+        Set<String> dropList = null;
+        for (String item : itemList) {
+            if (!item.equals(GamePlan.ZBRAN) && !item.equals(GamePlan.KLICE)){
+                dropList.add(item);
+            }
+        }
+
+        for (String item : dropList){
+            executeCommand("poloz " +item);
+        }
+
+    }
+
+    public void dropItems3(){
+        Set<String> itemList = game.getGamePlan().getInventory().getItemsInventory().keySet();
+        boolean a = itemList.size()==1 && itemList.contains(GamePlan.ZBRAN);
+        boolean b = itemList.size()==1 && itemList.contains(GamePlan.KLICE);
+        boolean c = itemList.size()==2 && itemList.contains(GamePlan.KLICE) && itemList.contains(GamePlan.ZBRAN);
+
+        while(!itemList.isEmpty() && !a && !b && !c){
+            executeCommand("poloz " );
         }
 
     }
