@@ -210,7 +210,7 @@ public class GamePlan
      * Metoda vrací odkaz na lokaci <i>(objekt třídy {@link Area})</i>.
      * 
      * @param areaName název lokace, na kterou chceme získát odkaz
-     * @return lokaci, na který získáme odkaz
+     * @return lokaci, na kterou získáme odkaz
      */
     public Area getArea(String areaName){
         return locations.get(areaName);

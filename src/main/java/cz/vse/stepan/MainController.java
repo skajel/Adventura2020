@@ -59,7 +59,7 @@ public class MainController {
     private static Stage stage;
 
     /**
-     * Metoda vytváří samotnoou hru s výchozím textem.
+     * Metoda vytváří samotnoou GUI hru s výchozím textem.
      */
     public void init(IGame game) {
         this.game = game;
@@ -93,6 +93,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Metoda v GUI v nastavení <i>hacking</i> se přepne na <i>zapnuto</i> a obarví adekvátně kruh <i>zelenou</i>, který je vedle menu.
+     */
     public void turnHacksOn() {
         if (off.isSelected()) {
             off.setSelected(false);
@@ -101,6 +104,9 @@ public class MainController {
         winnable.setVisible(true);
     }
 
+    /**
+     * Metoda v GUI v nastavení <i>hacking</i> se přepne na <i>vypnuto</i> a obarví adekvátně kruh <i>červenou</i>, který je vedle menu.
+     */
     public void turnHacksOff() {
         if (on.isSelected()) {
             on.setSelected(false);
@@ -109,7 +115,9 @@ public class MainController {
         winnable.setVisible(false);
     }
 
-
+    /**
+     * Metoda v GUI aktualizuje pozici hlavní postavy a Arthura na mapě.
+     */
     private void updateMap() {
         String location = getCurrentArea().getName();
         InputStream stream;
@@ -123,6 +131,9 @@ public class MainController {
         map.setImage(img);
     }
 
+    /**
+     * Metoda v GUI aktualizuje obrázek jako pozadí podle velikosti rozlišení hry.
+     */
     private void updateBackground() {
         InputStream str;
         String location = getCurrentArea().getName();
@@ -138,6 +149,9 @@ public class MainController {
         imageMid.setImage(img);
     }
 
+    /**
+     * Metoda v GUI otevře nastavení hry, kde se ukončuje hra.
+     */
     private void openSettings() {
         settings.setCursor(Cursor.HAND);
         if (!settingsMenu.isVisible()) {
@@ -157,6 +171,10 @@ public class MainController {
 
     }
 
+    /**
+     * Metoda v GUI aktualizuje předměty třídy {@link Item}.
+     * Pokud je předměty nepřenositelný, při přejetí myší se tento fakt vypíše.
+     */
     private void updateItems() {
         Collection<Item> itemList = getCurrentArea().getItemList().values();
         items.getChildren().clear();
@@ -190,6 +208,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Metoda v GUI aktualizuje východy třídy {@link Area}.
+     */
     private void updateExits() {
         Collection<Area> exitList = getCurrentArea().getAreaList();
         exits.getChildren().clear();
@@ -214,6 +235,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Metoda v GUI aktualizuje osoby třídy {@link Person}.
+     */
     private void updatePeople() {
         Collection<Person> peopleList = getCurrentArea().getPeopleList().values();
         people.getChildren().clear();
@@ -237,6 +261,10 @@ public class MainController {
         }
     }
 
+    /**
+     * Metoda v GUI aktualizuje předměty třídy {@link Item} v inventáři třídy {@link Inventory}.
+     * Jestliže je konec hry, předměty se zamrazí.
+     */
     private void updateInventory() {
         Collection<Item> itemList = game.getGamePlan().getInventory().getItemsInventory().values();
         inventory.getChildren().clear();
@@ -264,16 +292,31 @@ public class MainController {
 
     }
 
+    /**
+     * Metoda vrací odkaz na lokaci <i>(objekt třídy {@link Area})</i>.
+     *
+     * @return lokaci, na kterou získáme odkaz
+     */
     private Area getCurrentArea() {
         return game.getGamePlan().getCurrentArea();
     }
 
+    /**
+     * Metoda provede příkaz z rozhraní {@link ICommand}
+     *
+     * @param command příkaz, který chceme provést
+     */
     private void executeCommand(String command) {
         String result = game.processCommand(command);
         textOutput.appendText(result + "\n\n");
         update();
     }
 
+    /**
+     * Metoda v GUI odesílá jednotlivé textové příkazy k vykonání.
+     *
+     * @param keyEvent zmáčknutí klávesy, která má provést metodu
+     */
     public void onInputKeyPressed(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             executeCommand(textInput.getText());
@@ -281,6 +324,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Metoda otevře URL stránku (nápovědu k textové adventuře) v prohlížeči.
+     */
     public void getHint() {
         try {
             Desktop desktop = java.awt.Desktop.getDesktop();
@@ -291,31 +337,45 @@ public class MainController {
         }
     }
 
+    /**
+     * Metoda ukončí původní a spustí novou hru v novém okně v rozlišení <i>1920x1080</i>.
+     */
     public void set1920() throws IOException {
         executeCommand("konec\n\n");
         InputStream str = getClass().getClassLoader().getResourceAsStream("scene3.fxml");
         makeWindow(str);
     }
 
+    /**
+     * Metoda ukončí původní a spustí novou hru v novém okně v rozlišení <i>1600x900</i>.
+     */
     public void set1600() throws IOException {
         executeCommand("konec\n\n");
         InputStream str = getClass().getClassLoader().getResourceAsStream("scene2.fxml");
         makeWindow(str);
     }
 
+    /**
+     * Metoda ukončí původní a spustí novou hru v novém okně v rozlišení <i>1280x720</i>.
+     */
     public void set1280() throws IOException {
         executeCommand("konec\n\n");
         InputStream str = getClass().getClassLoader().getResourceAsStream("scene1.fxml");
         makeWindow(str);
     }
 
+    /**
+     * Metoda zavře původní hru a vytvoří novou. Výsledkem metody je otevření GUI.
+     *
+     * @param str InputStream, který obsahuje danou scénu ve formátu fxml
+     */
     public static void makeWindow(InputStream str) throws IOException {
         if (running == 1) {
             stage.close();
         }
         Stage primaryStage = new Stage();
         primaryStage.setResizable(false);
-        primaryStage.setTitle("Adventura");
+        primaryStage.setTitle("Nebezpečí v továrně");
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(str);
 
@@ -330,7 +390,9 @@ public class MainController {
         stage = primaryStage;
     }
 
-
+    /**
+     * Metoda vrátí hlavní postavu třídy {@link MainCharacter} do výchozí lokace třídy {@link Area}
+     */
     public void winGame() {
         while (!getCurrentArea().getName().equals(GamePlan.LOZNICE)) {
             String location = getCurrentArea().getName();
@@ -362,6 +424,9 @@ public class MainController {
 
     }
 
+    /**
+     * Metoda přečte ze souboru příkazy, které se provedou, aby hlavní postava vyhrála hru.
+     */
     public void letsWin() {
         try {
             BufferedReader read = new BufferedReader(new FileReader("vyhra.txt"));
@@ -376,6 +441,9 @@ public class MainController {
 
     }
 
+    /**
+     * Metoda položí první objekt třídy {@link Item} z inventáře do lokace třídy {@link Area}
+     */
     public void dropItems() {
         Collection<Item> itemList = game.getGamePlan().getInventory().getItemsInventory().values();
 

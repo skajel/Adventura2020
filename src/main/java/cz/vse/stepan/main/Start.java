@@ -1,14 +1,10 @@
 package cz.vse.stepan.main;
 
-import com.sun.xml.internal.bind.annotation.OverrideAnnotationOf;
 import cz.vse.stepan.MainController;
 import cz.vse.stepan.model.Game;
 import cz.vse.stepan.model.IGame;
 import cz.vse.stepan.textUI.TextUI;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.InputStream;
@@ -22,7 +18,8 @@ import java.util.List;
  *
  * @author Jarmila Pavlíčková
  * @author Jan Říha
- * @version LS 2020
+ * @author Ondřej Štěpán
+ * @version ZS 2020
  */
 public class Start extends Application
 {
