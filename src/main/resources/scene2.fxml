@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane id="pane" stylesheets="style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.stepan.MainController">
+   <VBox alignment="BOTTOM_LEFT">
+      <children>
+         <ImageView fx:id="imageTop" fitHeight="50.0" fitWidth="1600.0" nodeOrientation="INHERIT" pickOnBounds="true">
+            <image>
+               <Image url="@wooden.jpg" />
+            </image>
+            <effect>
+               <DropShadow />
+            </effect></ImageView>
+         <ImageView fx:id="imageMid" fitHeight="500.0" fitWidth="1600.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+            <effect>
+               <InnerShadow />
+            </effect></ImageView>
+         <ImageView fx:id="imageBot" fitHeight="350.0" fitWidth="1600.0" nodeOrientation="INHERIT">
+            <image>
+               <Image url="@wooden.jpg" />
+            </image>
+            <effect>
+               <DropShadow />
+            </effect>
+            <viewport>
+               <Rectangle2D />
+            </viewport>
+         </ImageView>
+      </children>
+   </VBox>
+    <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0">
+        <top>
+            <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0">
+                <MenuBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0">
+                    <Menu styleClass="style.css" text="MENU">
+                  <Menu mnemonicParsing="false" text="Nová hra">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#set1920" text="1920X1080" />
+                        <MenuItem mnemonicParsing="false" onAction="#set1600" text="1600X900" />
+                    <MenuItem mnemonicParsing="false" onAction="#set1280" text="1280X720" />
+                     </items>
+                  </Menu>
+                        <MenuItem onAction="#getHint" text="Nápověda" />
+                  <MenuItem fx:id="winnable" mnemonicParsing="false" onAction="#winGame" text="Vyhrát" visible="false" />
+                    </Menu>
+                </MenuBar>
+                <VBox prefHeight="40.0" AnchorPane.leftAnchor="160.0">
+                    <Label fx:id="locationName" textFill="WHITE">
+                  <font>
+                     <Font size="24.0" />
+                  </font></Label>
+                    <Label fx:id="locationDescription" textFill="WHITE">
+                    <font>
+                        <Font size="16.0" />
+                    </font></Label>
+                </VBox>
+                <ImageView fx:id="settings" fitHeight="50.0" fitWidth="50.0" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+               <image>
+                  <Image url="@settings.png" />
+               </image></ImageView>
+            <MenuBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="0.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="HACKING">
+                     <items>
+                        <CheckMenuItem fx:id="on" mnemonicParsing="false" onAction="#turnHacksOn" text="Zapnout" />
+                        <CheckMenuItem fx:id="off" mnemonicParsing="false" onAction="#turnHacksOff" selected="true" text="Vypnout" />
+                     </items></Menu>
+              </menus>
+            </MenuBar>
+            <Circle fx:id="hackBtn" fill="RED" radius="10.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="15.0" />
+            <VBox prefHeight="50.0" prefWidth="100.0" AnchorPane.rightAnchor="300.0" />
+            </AnchorPane>
+        </top>
+        <left>
+        </left>
+        <bottom>
+            <SplitPane dividerPositions="0.5, 0.5" prefHeight="300.0" BorderPane.alignment="CENTER">
+                <items>
+                    <ImageView fx:id="map" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                    <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="950.0">
+                        <children>
+                            <TextArea fx:id="textOutput" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="270.0" />
+                            <TextField fx:id="textInput" maxHeight="-Infinity" minHeight="-Infinity" onKeyPressed="#onInputKeyPressed" prefHeight="30.0" />
+                        </children>
+                    </VBox>
+                    <GridPane alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0">
+
+                        <children>
+
+                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="PŘEDMĚTY" textAlignment="CENTER" GridPane.valignment="CENTER">
+
+                                <VBox fx:id="items" spacing="1">
+                                </VBox>
+                        <font>
+                           <Font name="Franklin Gothic Book" size="14.0" />
+                        </font>
+                            </TitledPane>
+                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="INVENTÁŘ" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.valignment="CENTER">
+                                <VBox fx:id="inventory" spacing="1">
+                                </VBox>
+                                <font>
+                                    <Font name="Franklin Gothic Book" size="14.0" />
+                                </font>
+                            </TitledPane>
+                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="OSOBY" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <VBox fx:id="people" spacing="1">
+                                </VBox>
+                                <font>
+                                    <Font name="Franklin Gothic Book" size="14.0" />
+                                </font>
+                            </TitledPane>
+                            <TitledPane alignment="CENTER" collapsible="false" expanded="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" text="VÝCHODY" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                <VBox fx:id="exits" spacing="1">
+                                </VBox>
+                                <font>
+                                    <Font name="Franklin Gothic Book" size="14.0" />
+                                </font>
+                            </TitledPane>
+                        </children>
+                        <columnConstraints>
+                            <ColumnConstraints />
+                            <ColumnConstraints />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints />
+                            <RowConstraints />
+                        </rowConstraints>
+
+                    </GridPane>
+                </items>
+            <effect>
+               <InnerShadow />
+            </effect>
+            <BorderPane.margin>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </BorderPane.margin>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+            <padding>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+            </SplitPane>
+        </bottom>
+      <right>
+         <AnchorPane BorderPane.alignment="CENTER">
+            <children>
+               <VBox prefHeight="40.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">
+                  <children>
+                     <Label fx:id="locationDescription1" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="verze 1.0.0" textFill="WHITE" />
+                     <Label fx:id="locationName1" alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="autor: Ondřej Štěpán" textFill="WHITE">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </VBox>
+            </children></AnchorPane>
+      </right>
+    </BorderPane>
+   <StackPane fx:id="settingsMenu" prefHeight="150.0" prefWidth="200.0" visible="false">
+      <children>
+         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@wood.jpg" />
+            </image>
+            <effect>
+               <DropShadow />
+            </effect>
+         </ImageView>
+         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <Label text="UKONČIT HRU?" textFill="WHITE">
+                  <font>
+                     <Font size="28.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets top="30.0" />
+                  </VBox.margin></Label>
+               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="35.0">
+                  <children>
+                     <Button fx:id="btnYes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="ANO" />
+                     <Button fx:id="btnNo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="NE" />
+                  </children>
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+               </HBox>
+            </children>
+         </VBox>
+      </children>
+   </StackPane>
+
+
+</StackPane>

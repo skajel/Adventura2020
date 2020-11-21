@@ -10,7 +10,7 @@ import java.text.DecimalFormat;
  * Inventář má svou kapacitu v kilogramech, která lze rozšířit.
  *
  * @author Ondřej Štěpán
- * @version LS 2020
+ * @version ZS 2020
  */
 public class Inventory
 {
@@ -31,6 +31,13 @@ public class Inventory
         this.expand = 1.0;
         this.currentLoad = 0.0;
     }
+
+    /**
+     * Metoda vrací hondnoty předmětů třídy {@link Item} inventáře.
+     *
+     * @return mapa předmětů
+     */
+    public Map<String, Item> getItemsInventory() {return inventory;}
 
     /**
      * Metoda vrací celkovou kapacitu inventáře ve formátu <i>#.#</i>.

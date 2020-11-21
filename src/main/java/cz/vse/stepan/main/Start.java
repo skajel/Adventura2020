@@ -1,8 +1,15 @@
 package cz.vse.stepan.main;
 
+import cz.vse.stepan.MainController;
 import cz.vse.stepan.model.Game;
 import cz.vse.stepan.model.IGame;
-import cz.vse.stepan.model.TextUI;
+import cz.vse.stepan.textUI.TextUI;
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Hlavní třída určená pro spuštění hry. Obsahuje pouze statickou metodu
@@ -11,9 +18,10 @@ import cz.vse.stepan.model.TextUI;
  *
  * @author Jarmila Pavlíčková
  * @author Jan Říha
- * @version LS 2020
+ * @author Ondřej Štěpán
+ * @version ZS 2020
  */
-public final class Start
+public class Start extends Application
 {
     /**
      * Metoda pro spuštění celé aplikace.
@@ -22,16 +30,27 @@ public final class Start
      */
     public static void main(String[] args)
     {
-        IGame game = new Game();
-        TextUI textUI = new TextUI(game);
-        
-        if (args.length == 0) {
-            textUI.play();
-        } else {
-            textUI.play(args[0]);
-        }
-    }
+        List<String> vstup = Arrays.asList(args);
 
-    private Start() {}
+        if(vstup.contains("text")) {
+
+            IGame game = new Game();
+            TextUI textUI = new TextUI(game);
+            textUI.play();
+
+        } else {
+            launch();
+        }}
+
+    /**
+     * Metoda přepisuje metodu start v třídě {@link Application} a spustí novou hru v GUI v defaultním rozlišení.
+     *
+     * @param primaryStage stage, která se otevře
+     */
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        InputStream stream = getClass().getClassLoader().getResourceAsStream("scene.fxml");
+        MainController.makeWindow(stream);
+    }
 
 }
