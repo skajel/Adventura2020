@@ -9,7 +9,7 @@ package cz.vse.stepan.model;
 public class CommandPick implements ICommand
 {
     private static final String NAME = "vezmi";
-    private GamePlan plan;
+    private final GamePlan plan;
 
     /**
      * Konstruktor třídy.
@@ -51,7 +51,7 @@ public class CommandPick implements ICommand
         Item item = plan.getItem(itemName);
         Inventory inventory = plan.getInventory();
 
-        if (!(item instanceof Item)){
+        if (item == null){
             return "Je tohle vůbec předmět?!";
         }
 
@@ -65,25 +65,22 @@ public class CommandPick implements ICommand
 
         if (!item.isTakeable()){
             MainCharacter main = plan.getMainCharacter();
-            if (itemName.equals(plan.SAKO)){
-                inventory.expandLoad();
-                area.removeItem(itemName);
-                return "Sebral jsi '" + plan.SAKO +"', které ti zvětšilo nosnost inventáře o " 
-                + inventory.getExpand() + " kg na "
-                + inventory.getTotalLoad() + " kg.";
-            }
-
-            else if (itemName.equals(plan.PIVO)){
-                area.removeItem(itemName);
-                main.setDrunk();
-                main.setThirsty();
-                return "Vypil jsi '" + plan.PIVO +"'.";
-            }
-
-            else if (itemName.equals(plan.VODA)){
-                area.removeItem(itemName);
-                main.setThirsty();
-                return "Vypil jsi '" + plan.VODA +"'.";
+            switch (itemName) {
+                case GamePlan.SAKO:
+                    inventory.expandLoad();
+                    area.removeItem(itemName);
+                    return "Sebral jsi '" + GamePlan.SAKO + "', které ti zvětšilo nosnost inventáře o "
+                            + inventory.getExpand() + " kg na "
+                            + inventory.getTotalLoad() + " kg.";
+                case GamePlan.PIVO:
+                    area.removeItem(itemName);
+                    main.setDrunk();
+                    main.setThirsty();
+                    return "Vypil jsi '" + GamePlan.PIVO + "'.";
+                case GamePlan.VODA:
+                    area.removeItem(itemName);
+                    main.setThirsty();
+                    return "Vypil jsi '" + GamePlan.VODA + "'.";
             }
         }
 

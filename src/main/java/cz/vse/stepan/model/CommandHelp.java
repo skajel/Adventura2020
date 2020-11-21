@@ -11,8 +11,8 @@ package cz.vse.stepan.model;
 public class CommandHelp implements ICommand
 {
     private static final String NAME = "napoveda";
-    private ListOfCommands listOfCommands;
-    private GamePlan plan;
+    private final ListOfCommands listOfCommands;
+    private final GamePlan plan;
 
     /**
      * Konstruktor třídy.

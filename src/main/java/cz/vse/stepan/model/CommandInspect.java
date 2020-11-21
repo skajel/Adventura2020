@@ -9,7 +9,7 @@ package cz.vse.stepan.model;
 public class CommandInspect implements ICommand
 {
     private static final String NAME = "prozkoumej";
-    private GamePlan plan;
+    private final GamePlan plan;
 
     /**
      * Konstruktor třídy.
@@ -50,7 +50,7 @@ public class CommandInspect implements ICommand
         Inventory inventory = plan.getInventory();
         Item item = plan.getItem(itemName);
 
-        if (!(item instanceof Item)){
+        if (item == null){
             return "Je tohle vůbec předmět?!";
         }
 

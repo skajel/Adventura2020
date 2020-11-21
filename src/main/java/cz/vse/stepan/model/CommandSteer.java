@@ -9,7 +9,7 @@ package cz.vse.stepan.model;
 public class CommandSteer implements ICommand
 {
     private static final String NAME = "rid";
-    private GamePlan plan;
+    private final GamePlan plan;
 
     /**
      * Konstruktor třídy.
@@ -49,11 +49,11 @@ public class CommandSteer implements ICommand
         Area area = plan.getCurrentArea();
         Inventory inventory = plan.getInventory();
         Item item = area.getItem(itemName);
-        Area vratnice = plan.getArea(plan.VRATNICE);
-        Area garaz = plan.getArea(plan.GARAZ);
+        Area vratnice = plan.getArea(GamePlan.VRATNICE);
+        Area garaz = plan.getArea(GamePlan.GARAZ);
         Item items = plan.getItem(itemName);
 
-        if (!(items instanceof Item)){
+        if (items == null){
             return "Je tohle vůbec předmět?!.";
         }
 
@@ -65,16 +65,16 @@ public class CommandSteer implements ICommand
             return "Dopravní prostředek '" + itemName + "' tady není.";
         }
 
-        if (!inventory.containsItem(plan.KLICE)){   
-            return "Nemůžeš řídit '" + itemName + "', protože sis zapomněl '" + plan.KLICE + "'.\n";
+        if (!inventory.containsItem(GamePlan.KLICE)){
+            return "Nemůžeš řídit '" + itemName + "', protože sis zapomněl '" + GamePlan.KLICE + "'.\n";
         }
 
-        if (area.getName().equals(plan.VRATNICE)){
+        if (area.getName().equals(GamePlan.VRATNICE)){
             vratnice.removeItem(itemName);
             plan.setCurrentArea(garaz);
             garaz.addItem(item);
-            return "Nastoupil(a) jsi do '" + itemName + "' a přijel jsi k " + plan.GARAZ + ". \n"
-            + plan.getArea(plan.GARAZ).getFullDescription() + "\n";
+            return "Nastoupil(a) jsi do '" + itemName + "' a přijel jsi k " + GamePlan.GARAZ + ". \n"
+            + plan.getArea(GamePlan.GARAZ).getFullDescription() + "\n";
         }
 
         MainCharacter main = plan.getMainCharacter();
@@ -85,13 +85,13 @@ public class CommandSteer implements ICommand
                 plan.setCurrentArea(vratnice);
                 vratnice.addItem(item);
 
-                return "Nemůžeš řídit, protože jsi vypil '" + plan.PIVO + "', ještě že máš s sebou '" + plan.ARTHUR + "'.\n"
-                + "Nastoupil jsi do '" + itemName + "' a přijel jsi k " + plan.VRATNICE + ". \n\n"
-                + plan.getArea(plan.VRATNICE).getFullDescription() + "\n";
+                return "Nemůžeš řídit, protože jsi vypil '" + GamePlan.PIVO + "', ještě že máš s sebou '" + GamePlan.ARTHUR + "'.\n"
+                + "Nastoupil jsi do '" + itemName + "' a přijel jsi k " + GamePlan.VRATNICE + ". \n\n"
+                + plan.getArea(GamePlan.VRATNICE).getFullDescription() + "\n";
             }
             else{
-                return "Nemůžeš řídit '" + itemName + "', protože jsi vypil '" + plan.PIVO + "'.\n"
-                + "Vrať se zpět do '" + plan.OBYVAK + "' a promluv si s '" + plan.ARTHUR + "', aby tě svezl.\n";
+                return "Nemůžeš řídit '" + itemName + "', protože jsi vypil '" + GamePlan.PIVO + "'.\n"
+                + "Vrať se zpět do '" + GamePlan.OBYVAK + "' a promluv si s '" + GamePlan.ARTHUR + "', aby tě svezl.\n";
             }
         }  
 
@@ -99,8 +99,8 @@ public class CommandSteer implements ICommand
         plan.setCurrentArea(vratnice);
         vratnice.addItem(item);
 
-        return "Nastoupil jsi do '" + itemName + "' a přijel jsi k " + plan.VRATNICE + ". \n\n"
-        + plan.getArea(plan.VRATNICE).getFullDescription() + "\n";
+        return "Nastoupil jsi do '" + itemName + "' a přijel jsi k " + GamePlan.VRATNICE + ". \n\n"
+        + plan.getArea(GamePlan.VRATNICE).getFullDescription() + "\n";
     }
 
     /**

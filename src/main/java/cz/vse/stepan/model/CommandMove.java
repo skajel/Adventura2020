@@ -83,7 +83,7 @@ public class CommandMove implements ICommand
 
         if (exitName.equals(plan.TOVARNA)){
             plan.setCurrentArea(exitArea);
-            game.setGameOver(true);
+            game.setGameOver();
             return plan.FINAL_SLOGAN;
         }
 

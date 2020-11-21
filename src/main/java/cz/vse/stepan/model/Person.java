@@ -11,8 +11,8 @@ import java.util.Objects;
  */
 public class Person
 {
-    private String name;
-    private String monolog;
+    private final String name;
+    private final String monolog;
 
     /**
      * Konstruktor třídy. Vytvoří osobu se zadaným názvem a monologem.

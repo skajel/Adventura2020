@@ -11,7 +11,7 @@ public class CommandTerminate implements ICommand
 {
     private static final String NAME = "konec";
 
-    private Game game;
+    private final Game game;
 
     /**
      * Konstruktor třídy.
@@ -38,7 +38,7 @@ public class CommandTerminate implements ICommand
             return "Nechápu, co mám ukončit. Příkaz '" + NAME + "' se používá bez parametrů a ukončuje celou hru.";
         }
 
-        game.setGameOver(true);
+        game.setGameOver();
         return "Hra byla ukončena příkazem '" + NAME + "'.";
     }
 

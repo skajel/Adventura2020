@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class ListOfCommands
 {
-    private  Map<String, ICommand> commands;  // Mapa pro uložení přípustných příkazů
+    private final Map<String, ICommand> commands;  // Mapa pro uložení přípustných příkazů
 
     /**
      * Konstruktor třídy.
@@ -68,12 +68,12 @@ public class ListOfCommands
      */
     public String getNames()
     {
-        String list = "";
+        StringBuilder list = new StringBuilder();
         for (String commandName : commands.keySet()) {
-            list += commandName + " ";
+            list.append(commandName).append(" ");
         }
 
-        return list;
+        return list.toString();
     }
 
 }

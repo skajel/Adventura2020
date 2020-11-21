@@ -264,10 +264,7 @@ public class GamePlan
      */
     public boolean isVictorious()
     {
-        if (!inventory.containsItem(ZBRAN)){
-            return false;
-        }
-        return true;
+        return inventory.containsItem(ZBRAN);
     }
 
 

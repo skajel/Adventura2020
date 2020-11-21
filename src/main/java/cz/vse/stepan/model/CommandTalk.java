@@ -9,7 +9,7 @@ package cz.vse.stepan.model;
 public class CommandTalk implements ICommand
 {
     private static final String NAME = "promluv";
-    private GamePlan plan;
+    private final GamePlan plan;
 
     /**
      * Konstruktor třídy.
@@ -47,7 +47,7 @@ public class CommandTalk implements ICommand
         Area area = plan.getCurrentArea();
         Person person = plan.getPerson(personName);
 
-        if (!(person instanceof Person))
+        if (person == null)
         {
             return "Je tohle vůbec osoba?!";
         }
@@ -58,7 +58,7 @@ public class CommandTalk implements ICommand
 
         MainCharacter main = plan.getMainCharacter();
 
-        if (personName.equals(plan.ARTHUR)){
+        if (personName.equals(GamePlan.ARTHUR)){
             main.setWithArthur();
             area.removePerson(personName);
         }

@@ -11,11 +11,11 @@ import java.util.Objects;
  */
 public class Item
 {
-    private String name;
-    private String description;
-    private boolean moveable;
-    private double weight;
-    private boolean takeable;
+    private final String name;
+    private final String description;
+    private final boolean moveable;
+    private final double weight;
+    private final boolean takeable;
 
     /**
      * Konstruktor třídy. Vytvoří předmět se zadaným názvem, popisem, 

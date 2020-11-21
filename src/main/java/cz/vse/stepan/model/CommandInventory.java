@@ -9,7 +9,7 @@ package cz.vse.stepan.model;
 public class CommandInventory implements ICommand
 {
     private static final String NAME = "inventar";
-    private GamePlan plan;
+    private final GamePlan plan;
 
     /**
      * Konstruktor třídy.

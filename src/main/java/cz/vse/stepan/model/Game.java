@@ -17,8 +17,8 @@ package cz.vse.stepan.model;
  */
 public class Game implements IGame
 {
-    private ListOfCommands listOfCommands;
-    private GamePlan gamePlan;
+    private final ListOfCommands listOfCommands;
+    private final GamePlan gamePlan;
     private boolean gameOver;
 
     /**
@@ -66,11 +66,11 @@ public class Game implements IGame
 
         String epilogue = "Díky, že sis zahrál.";
 
-        if (gamePlan.isVictorious() && gamePlan.getCurrentArea().getName().equals(gamePlan.TOVARNA)) {
+        if (gamePlan.isVictorious() && gamePlan.getCurrentArea().getName().equals(GamePlan.TOVARNA)) {
             epilogue = "Narazil jsi na zloděje. Sice se snažil utéct, ale tobě se podařilo zloděje zastavit výstřelem ze zbraně. \n"
                     + "ZVÍTĚZIL JSI!\n" + epilogue;
         }
-        else if (gamePlan.getCurrentArea().getName().equals(gamePlan.TOVARNA)){
+        else if (gamePlan.getCurrentArea().getName().equals(GamePlan.TOVARNA)){
             epilogue = "Narazil jsi na zloděje, který byl ozbrojený, ty však nemáš zbraň, kterou ho můžeš zabít.\n"
                     + "PROHRÁL JSI, ZKUS HRU ZNOVA!\n"+ epilogue;
         }
@@ -84,10 +84,7 @@ public class Game implements IGame
     @Override
     public boolean isGameOver()
     {
-        if(gameOver == true || gamePlan.getCurrentArea().getName().equals(gamePlan.TOVARNA)){
-            return true;
-        }
-        return false;
+        return gameOver || gamePlan.getCurrentArea().getName().equals(GamePlan.TOVARNA);
     }
 
     /**
@@ -101,11 +98,9 @@ public class Game implements IGame
         String cmdName = words[0];
         String[] cmdParameters = new String[words.length - 1];
 
-        for (int i = 0; i < cmdParameters.length; i++) {
-            cmdParameters[i] = words[i + 1];
-        }
+        System.arraycopy(words, 1, cmdParameters, 0, cmdParameters.length);
 
-        String result = null;
+        String result;
         if (listOfCommands.checkCommand(cmdName)) {
             ICommand command = listOfCommands.getCommand(cmdName);
             result = command.process(cmdParameters);
@@ -130,11 +125,10 @@ public class Game implements IGame
      * využívá třída {@link CommandTerminate}, mohou ji ale použít
      * i další implementace rozhraní {@link ICommand}.
      *
-     * @param gameOver příznak indikující, zda hra již skončila
      */
-    void setGameOver(boolean gameOver)
+    void setGameOver()
     {
-        this.gameOver = gameOver;
+        this.gameOver = true;
     }
 
 }

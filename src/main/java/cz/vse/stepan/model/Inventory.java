@@ -14,10 +14,10 @@ import java.text.DecimalFormat;
  */
 public class Inventory
 {
-    private Map<String, Item> inventory;
+    private final Map<String, Item> inventory;
     private double currentLoad;
     private double totalLoad;
-    private double expand;
+    private final double expand;
     DecimalFormat decimal = new DecimalFormat("0.0");
 
     /**
@@ -80,14 +80,14 @@ public class Inventory
      * @return všechny předměty v inventáři
      */
     public String getAllItems(){
-        String answer = "";  
+        StringBuilder answer = new StringBuilder();
         Set<String> keys = inventory.keySet();
         if (keys.isEmpty()){
             return "Inventář je prázdný.";
         }
         else {
             for (String k : keys){
-                answer += k + " ";
+                answer.append(k).append(" ");
             }
         }
         return "V inventáři se nachází: " + answer;
@@ -107,11 +107,10 @@ public class Inventory
      * Metoda odebere předmět <i>(objekt třídy {@link Item})</i> z inventáře.
      * 
      * @param itemName předmět, který bude z inventáře odebrán
-     * @return předmět, který byl z lokace odebrán
      */
-    public Item removeItem (String itemName){
+    public void removeItem (String itemName){
         currentLoad=currentLoad-getItem(itemName).getWeight();
-        return inventory.remove(itemName);
+        inventory.remove(itemName);
     }
 
     /**
