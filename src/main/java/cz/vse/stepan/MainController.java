@@ -1,8 +1,6 @@
 package cz.vse.stepan;
 
-import cz.vse.stepan.main.Start;
 import cz.vse.stepan.model.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
@@ -22,15 +20,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-
 import java.awt.*;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
 
+/**
+ * Třída představuje ovládání GUI verze adventury.
+ *
+ * @author Ondřej Štěpán
+ * @version ZS 2020
+ */
 
 public class MainController {
 
@@ -58,6 +58,9 @@ public class MainController {
     private static int running = 0;
     private static Stage stage;
 
+    /**
+     * Metoda vytváří samotnoou hru s výchozím textem.
+     */
     public void init(IGame game) {
         this.game = game;
         update();
@@ -65,6 +68,10 @@ public class MainController {
 
     }
 
+    /**
+     * Metoda aktualizuje vizuální stránku hry pomocí odkazů na jednotlivé akttualizace.
+     * Pokud hra je ukončena, nastaví závěrečný text. Hráč dále nemůže psát jednotlivé příkazy.
+     */
     private void update() {
         String location = getCurrentArea().getName();
         locationName.setText(location.toUpperCase());
@@ -86,7 +93,7 @@ public class MainController {
         }
     }
 
-    public void turnHacksOn(ActionEvent actionEvent) {
+    public void turnHacksOn() {
         if (off.isSelected()) {
             off.setSelected(false);
         }
@@ -94,7 +101,7 @@ public class MainController {
         winnable.setVisible(true);
     }
 
-    public void turnHacksOff(ActionEvent actionEvent) {
+    public void turnHacksOff() {
         if (on.isSelected()) {
             on.setSelected(false);
         }
@@ -111,6 +118,7 @@ public class MainController {
         } else {
             stream = getClass().getClassLoader().getResourceAsStream(location + "-a.jpg");
         }
+        assert stream != null;
         Image img = new Image(stream);
         map.setImage(img);
     }
@@ -125,6 +133,7 @@ public class MainController {
         } else {
             str = getClass().getClassLoader().getResourceAsStream(location + "1.jpg");
         }
+        assert str != null;
         Image img = new Image(str);
         imageMid.setImage(img);
     }
@@ -143,9 +152,7 @@ public class MainController {
                 update();
             });
 
-            btnYes.setOnAction(event1 -> {
-                System.exit(0);
-            });
+            btnYes.setOnAction(event1 -> System.exit(0));
         }
 
     }
@@ -158,23 +165,21 @@ public class MainController {
             String itemName = item.getName();
             Label itemLabel = new Label(itemName);
             InputStream stream = getClass().getClassLoader().getResourceAsStream(itemName + ".jpg");
+            assert stream != null;
             Image img = new Image(stream);
             ImageView imageView = new ImageView(img);
             imageView.setFitWidth(30);
             imageView.setFitHeight(30);
             itemLabel.setGraphic(imageView);
 
-            if (itemName.equals(game.getGamePlan().VEHICLE)) {
+            game.getGamePlan();
+            if (itemName.equals(GamePlan.VEHICLE)) {
                 itemLabel.setCursor(Cursor.HAND);
-                itemLabel.setOnMouseClicked(event -> {
-                    executeCommand("rid " + itemName);
-                })
+                itemLabel.setOnMouseClicked(event -> executeCommand("rid " + itemName))
                 ;
             } else if (item.isMoveable()) {
                 itemLabel.setCursor(Cursor.HAND);
-                itemLabel.setOnMouseClicked(event -> {
-                    executeCommand("vezmi " + itemName);
-                })
+                itemLabel.setOnMouseClicked(event -> executeCommand("vezmi " + itemName))
                 ;
 
             } else {
@@ -195,6 +200,7 @@ public class MainController {
             exitLabel.setTooltip(new Tooltip(area.getDescription()));
 
             InputStream stream = getClass().getClassLoader().getResourceAsStream(exitName + "3.jpg");
+            assert stream != null;
             Image img = new Image(stream);
             ImageView imageView = new ImageView(img);
             imageView.setFitWidth(50);
@@ -202,9 +208,7 @@ public class MainController {
             exitLabel.setGraphic(imageView);
 
             exitLabel.setCursor(Cursor.HAND);
-            exitLabel.setOnMouseClicked(event -> {
-                executeCommand("jdi " + exitName);
-            });
+            exitLabel.setOnMouseClicked(event -> executeCommand("jdi " + exitName));
 
             exits.getChildren().add(exitLabel);
         }
@@ -218,6 +222,7 @@ public class MainController {
             String personName = person.getName();
             Label personLabel = new Label(personName);
             InputStream stream = getClass().getClassLoader().getResourceAsStream(personName + ".png");
+            assert stream != null;
             Image img = new Image(stream);
             ImageView imageView = new ImageView(img);
             imageView.setFitWidth(40);
@@ -226,9 +231,7 @@ public class MainController {
 
 
             personLabel.setCursor(Cursor.HAND);
-            personLabel.setOnMouseClicked(event -> {
-                executeCommand("promluv " + personName);
-            });
+            personLabel.setOnMouseClicked(event -> executeCommand("promluv " + personName));
 
             people.getChildren().add(personLabel);
         }
@@ -242,17 +245,17 @@ public class MainController {
             String itemName = item.getName();
             Label itemLabel = new Label(itemName);
             InputStream stream = getClass().getClassLoader().getResourceAsStream(itemName + ".jpg");
+            assert stream != null;
             Image img = new Image(stream);
             ImageView imageView = new ImageView(img);
             imageView.setFitWidth(30);
             imageView.setFitHeight(30);
             itemLabel.setGraphic(imageView);
 
+            if (!getCurrentArea().getName().equals(GamePlan.TOVARNA)){
             itemLabel.setCursor(Cursor.HAND);
-            itemLabel.setOnMouseClicked(event -> {
-                executeCommand("poloz " + itemName);
-            })
-            ;
+            itemLabel.setOnMouseClicked(event -> executeCommand("poloz " + itemName))
+            ;}
 
 
             inventory.getChildren().add(itemLabel);
@@ -278,7 +281,7 @@ public class MainController {
         }
     }
 
-    public void getHint(ActionEvent actionEvent) {
+    public void getHint() {
         try {
             Desktop desktop = java.awt.Desktop.getDesktop();
             URI oURL = new URI("https://online.fliphtml5.com/vwlig/efia/#p=1");
@@ -288,26 +291,26 @@ public class MainController {
         }
     }
 
-    public void set1920(ActionEvent actionEvent) throws IOException {
+    public void set1920() throws IOException {
         executeCommand("konec\n\n");
         InputStream str = getClass().getClassLoader().getResourceAsStream("scene3.fxml");
         makeWindow(str);
     }
 
-    public void set1600(ActionEvent actionEvent) throws IOException {
+    public void set1600() throws IOException {
         executeCommand("konec\n\n");
         InputStream str = getClass().getClassLoader().getResourceAsStream("scene2.fxml");
         makeWindow(str);
     }
 
-    public void set1280(ActionEvent actionEvent) throws IOException {
+    public void set1280() throws IOException {
         executeCommand("konec\n\n");
         InputStream str = getClass().getClassLoader().getResourceAsStream("scene1.fxml");
         makeWindow(str);
     }
 
     public static void makeWindow(InputStream str) throws IOException {
-        if (running == 1){
+        if (running == 1) {
             stage.close();
         }
         Stage primaryStage = new Stage();
@@ -323,12 +326,12 @@ public class MainController {
         IGame hra = new Game();
         controller.init(hra);
         primaryStage.show();
-        running=1;
+        running = 1;
         stage = primaryStage;
     }
 
 
-    public void winGame(ActionEvent actionEvent) {
+    public void winGame() {
         while (!getCurrentArea().getName().equals(GamePlan.LOZNICE)) {
             String location = getCurrentArea().getName();
             switch (location) {
@@ -339,8 +342,6 @@ public class MainController {
                     executeCommand("jdi " + GamePlan.GARAZ);
                     break;
                 case GamePlan.GARAZ:
-                    executeCommand("jdi " + GamePlan.CHODBA);
-                    break;
                 case GamePlan.SKLEP:
                     executeCommand("jdi " + GamePlan.CHODBA);
                     break;
@@ -351,8 +352,6 @@ public class MainController {
                     executeCommand("jdi " + GamePlan.OBYVAK);
                     break;
                 case GamePlan.PRACOVNA:
-                    executeCommand("jdi " + GamePlan.LOZNICE);
-                    break;
                 case GamePlan.OBYVAK:
                     executeCommand("jdi " + GamePlan.LOZNICE);
                     break;
@@ -371,8 +370,6 @@ public class MainController {
                 executeCommand(line);
                 line = read.readLine();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -389,42 +386,12 @@ public class MainController {
                     executeCommand("poloz " + itemName);
                     break;
                 case GamePlan.ZBRAN:
-                    break;
                 case GamePlan.KLICE:
                     break;
             }
             break;
         }
     }
-
-
-    public void dropItems2() {
-        Set<String> itemList = game.getGamePlan().getInventory().getItemsInventory().keySet();
-        Set<String> dropList = null;
-        for (String item : itemList) {
-            if (!item.equals(GamePlan.ZBRAN) && !item.equals(GamePlan.KLICE)) {
-                dropList.add(item);
-            }
-        }
-
-        for (String item : dropList) {
-            executeCommand("poloz " + item);
-        }
-
-    }
-
-    public void dropItems3() {
-        Set<String> itemList = game.getGamePlan().getInventory().getItemsInventory().keySet();
-        boolean a = itemList.size() == 1 && itemList.contains(GamePlan.ZBRAN);
-        boolean b = itemList.size() == 1 && itemList.contains(GamePlan.KLICE);
-        boolean c = itemList.size() == 2 && itemList.contains(GamePlan.KLICE) && itemList.contains(GamePlan.ZBRAN);
-
-        while (!itemList.isEmpty() && !a && !b && !c) {
-            executeCommand("poloz ");
-        }
-
-    }
-
 
 }
 
