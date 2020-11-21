@@ -55,7 +55,8 @@ public class MainController {
     public CheckMenuItem on;
     public CheckMenuItem off;
     public MenuItem winnable;
-
+    private static int running = 0;
+    private static Stage stage;
 
     public void init(IGame game) {
         this.game = game;
@@ -64,7 +65,7 @@ public class MainController {
 
     }
 
-    private void update () {
+    private void update() {
         String location = getCurrentArea().getName();
         locationName.setText(location.toUpperCase());
 
@@ -79,30 +80,30 @@ public class MainController {
         openSettings();
         updateMap();
 
-        if(game.isGameOver()){
-        textOutput.appendText(game.getEpilogue());
-        textInput.setVisible(false);
-    }
+        if (game.isGameOver()) {
+            textOutput.appendText(game.getEpilogue());
+            textInput.setVisible(false);
+        }
     }
 
     public void turnHacksOn(ActionEvent actionEvent) {
-        if (off.isSelected()){
+        if (off.isSelected()) {
             off.setSelected(false);
         }
-        hackBtn.setFill(Color.rgb(0,255,0));
+        hackBtn.setFill(Color.rgb(0, 255, 0));
         winnable.setVisible(true);
     }
 
     public void turnHacksOff(ActionEvent actionEvent) {
-        if (on.isSelected()){
+        if (on.isSelected()) {
             on.setSelected(false);
         }
-        hackBtn.setFill(Color.rgb(255,0,0));
+        hackBtn.setFill(Color.rgb(255, 0, 0));
         winnable.setVisible(false);
     }
 
 
-    private void updateMap(){
+    private void updateMap() {
         String location = getCurrentArea().getName();
         InputStream stream;
         if (!game.getGamePlan().getMainCharacter().isWithArthur()) {
@@ -114,32 +115,32 @@ public class MainController {
         map.setImage(img);
     }
 
-    private void updateBackground(){
+    private void updateBackground() {
         InputStream str;
         String location = getCurrentArea().getName();
-        if(imageMid.getFitWidth()==1920) {
+        if (imageMid.getFitWidth() == 1920) {
             str = getClass().getClassLoader().getResourceAsStream(location + "3.jpg");
-        }
-        else if (imageMid.getFitWidth()==1600) {
+        } else if (imageMid.getFitWidth() == 1600) {
             str = getClass().getClassLoader().getResourceAsStream(location + "2.jpg");
-        }else{
+        } else {
             str = getClass().getClassLoader().getResourceAsStream(location + "1.jpg");
         }
         Image img = new Image(str);
         imageMid.setImage(img);
     }
 
-    private void openSettings(){
+    private void openSettings() {
         settings.setCursor(Cursor.HAND);
-        if(!settingsMenu.isVisible()) {
+        if (!settingsMenu.isVisible()) {
             settings.setOnMouseClicked(event -> {
-            settingsMenu.setVisible(true);
-            update();
-            });}
-        if (settingsMenu.isVisible()){
+                settingsMenu.setVisible(true);
+                update();
+            });
+        }
+        if (settingsMenu.isVisible()) {
             btnNo.setOnAction(event -> {
                 settingsMenu.setVisible(false);
-            update();
+                update();
             });
 
             btnYes.setOnAction(event1 -> {
@@ -153,7 +154,7 @@ public class MainController {
         Collection<Item> itemList = getCurrentArea().getItemList().values();
         items.getChildren().clear();
 
-        for (Item item : itemList){
+        for (Item item : itemList) {
             String itemName = item.getName();
             Label itemLabel = new Label(itemName);
             InputStream stream = getClass().getClassLoader().getResourceAsStream(itemName + ".jpg");
@@ -163,20 +164,18 @@ public class MainController {
             imageView.setFitHeight(30);
             itemLabel.setGraphic(imageView);
 
-            if(itemName.equals(game.getGamePlan().VEHICLE)){
+            if (itemName.equals(game.getGamePlan().VEHICLE)) {
                 itemLabel.setCursor(Cursor.HAND);
                 itemLabel.setOnMouseClicked(event -> {
                     executeCommand("rid " + itemName);
                 })
                 ;
-            }
-
-            else if(item.isMoveable()) {
+            } else if (item.isMoveable()) {
                 itemLabel.setCursor(Cursor.HAND);
                 itemLabel.setOnMouseClicked(event -> {
                     executeCommand("vezmi " + itemName);
-                        })
-                        ;
+                })
+                ;
 
             } else {
                 itemLabel.setTooltip(new Tooltip("Tato věc je nepřenositelná"));
@@ -204,7 +203,7 @@ public class MainController {
 
             exitLabel.setCursor(Cursor.HAND);
             exitLabel.setOnMouseClicked(event -> {
-                executeCommand("jdi "+exitName);
+                executeCommand("jdi " + exitName);
             });
 
             exits.getChildren().add(exitLabel);
@@ -215,7 +214,7 @@ public class MainController {
         Collection<Person> peopleList = getCurrentArea().getPeopleList().values();
         people.getChildren().clear();
 
-        for (Person person : peopleList){
+        for (Person person : peopleList) {
             String personName = person.getName();
             Label personLabel = new Label(personName);
             InputStream stream = getClass().getClassLoader().getResourceAsStream(personName + ".png");
@@ -228,7 +227,7 @@ public class MainController {
 
             personLabel.setCursor(Cursor.HAND);
             personLabel.setOnMouseClicked(event -> {
-                 executeCommand("promluv " + personName);
+                executeCommand("promluv " + personName);
             });
 
             people.getChildren().add(personLabel);
@@ -239,7 +238,7 @@ public class MainController {
         Collection<Item> itemList = game.getGamePlan().getInventory().getItemsInventory().values();
         inventory.getChildren().clear();
 
-        for (Item item : itemList){
+        for (Item item : itemList) {
             String itemName = item.getName();
             Label itemLabel = new Label(itemName);
             InputStream stream = getClass().getClassLoader().getResourceAsStream(itemName + ".jpg");
@@ -249,11 +248,11 @@ public class MainController {
             imageView.setFitHeight(30);
             itemLabel.setGraphic(imageView);
 
-                itemLabel.setCursor(Cursor.HAND);
-                itemLabel.setOnMouseClicked(event -> {
-                    executeCommand("poloz " + itemName);
-                })
-                ;
+            itemLabel.setCursor(Cursor.HAND);
+            itemLabel.setOnMouseClicked(event -> {
+                executeCommand("poloz " + itemName);
+            })
+            ;
 
 
             inventory.getChildren().add(itemLabel);
@@ -262,7 +261,9 @@ public class MainController {
 
     }
 
-    private Area getCurrentArea() {return game.getGamePlan().getCurrentArea();}
+    private Area getCurrentArea() {
+        return game.getGamePlan().getCurrentArea();
+    }
 
     private void executeCommand(String command) {
         String result = game.processCommand(command);
@@ -271,7 +272,7 @@ public class MainController {
     }
 
     public void onInputKeyPressed(KeyEvent keyEvent) {
-        if(keyEvent.getCode() == KeyCode.ENTER) {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
             executeCommand(textInput.getText());
             textInput.setText("");
         }
@@ -289,56 +290,31 @@ public class MainController {
 
     public void set1920(ActionEvent actionEvent) throws IOException {
         executeCommand("konec\n\n");
-
-        Stage primaryStage = new Stage();
-        primaryStage.setResizable(false);
-        primaryStage.setTitle("Adventura");
-
-        FXMLLoader loader = new FXMLLoader();
         InputStream str = getClass().getClassLoader().getResourceAsStream("scene3.fxml");
-        Parent root = loader.load(str);
-
-
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-
-        MainController controller = loader.getController();
-        IGame hra = new Game();
-        controller.init(hra);
-        primaryStage.show();
-
-
+        makeWindow(str);
     }
 
     public void set1600(ActionEvent actionEvent) throws IOException {
         executeCommand("konec\n\n");
-        Stage primaryStage = new Stage();
-        primaryStage.setResizable(false);
-        primaryStage.setTitle("Adventura");
-
-        FXMLLoader loader = new FXMLLoader();
         InputStream str = getClass().getClassLoader().getResourceAsStream("scene2.fxml");
-        Parent root = loader.load(str);
-
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-
-        MainController controller = loader.getController();
-        IGame hra = new Game();
-        controller.init(hra);
-        primaryStage.show();
+        makeWindow(str);
     }
 
     public void set1280(ActionEvent actionEvent) throws IOException {
         executeCommand("konec\n\n");
+        InputStream str = getClass().getClassLoader().getResourceAsStream("scene1.fxml");
+        makeWindow(str);
+    }
+
+    public static void makeWindow(InputStream str) throws IOException {
+        if (running == 1){
+            stage.close();
+        }
         Stage primaryStage = new Stage();
         primaryStage.setResizable(false);
         primaryStage.setTitle("Adventura");
-
         FXMLLoader loader = new FXMLLoader();
-        InputStream str = getClass().getClassLoader().getResourceAsStream("scene.fxml");
         Parent root = loader.load(str);
-
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -347,48 +323,51 @@ public class MainController {
         IGame hra = new Game();
         controller.init(hra);
         primaryStage.show();
+        running=1;
+        stage = primaryStage;
     }
 
+
     public void winGame(ActionEvent actionEvent) {
-        while (!getCurrentArea().getName().equals(GamePlan.LOZNICE)){
-        String location = getCurrentArea().getName();
-        switch (location) {
-           case GamePlan.TOVARNA:
-               executeCommand("jdi " + GamePlan.VRATNICE);
-               break;
-           case GamePlan.VRATNICE:
-               executeCommand("jdi " + GamePlan.GARAZ);
-               break;
-           case GamePlan.GARAZ:
-               executeCommand("jdi " + GamePlan.CHODBA);
-               break;
-           case GamePlan.SKLEP:
-               executeCommand("jdi " + GamePlan.CHODBA);
-               break;
-           case GamePlan.CHODBA:
-               executeCommand("jdi " + GamePlan.PRACOVNA);
-               break;
-           case GamePlan.KUCHYNE:
-               executeCommand("jdi " + GamePlan.OBYVAK);
-               break;
-           case GamePlan.PRACOVNA:
-               executeCommand("jdi " + GamePlan.LOZNICE);
-               break;
-           case GamePlan.OBYVAK:
-               executeCommand("jdi " + GamePlan.LOZNICE);
-               break;
-        }
+        while (!getCurrentArea().getName().equals(GamePlan.LOZNICE)) {
+            String location = getCurrentArea().getName();
+            switch (location) {
+                case GamePlan.TOVARNA:
+                    executeCommand("jdi " + GamePlan.VRATNICE);
+                    break;
+                case GamePlan.VRATNICE:
+                    executeCommand("jdi " + GamePlan.GARAZ);
+                    break;
+                case GamePlan.GARAZ:
+                    executeCommand("jdi " + GamePlan.CHODBA);
+                    break;
+                case GamePlan.SKLEP:
+                    executeCommand("jdi " + GamePlan.CHODBA);
+                    break;
+                case GamePlan.CHODBA:
+                    executeCommand("jdi " + GamePlan.PRACOVNA);
+                    break;
+                case GamePlan.KUCHYNE:
+                    executeCommand("jdi " + GamePlan.OBYVAK);
+                    break;
+                case GamePlan.PRACOVNA:
+                    executeCommand("jdi " + GamePlan.LOZNICE);
+                    break;
+                case GamePlan.OBYVAK:
+                    executeCommand("jdi " + GamePlan.LOZNICE);
+                    break;
+            }
         }
         dropItems();
         letsWin();
 
     }
 
-    public void letsWin(){
+    public void letsWin() {
         try {
             BufferedReader read = new BufferedReader(new FileReader("vyhra.txt"));
             String line = read.readLine();
-            while (line != null){
+            while (line != null) {
                 executeCommand(line);
                 line = read.readLine();
             }
@@ -400,48 +379,48 @@ public class MainController {
 
     }
 
-    public void dropItems(){
+    public void dropItems() {
         Collection<Item> itemList = game.getGamePlan().getInventory().getItemsInventory().values();
 
-            for (Item item : itemList) {
-                String itemName = item.getName();
-                switch (itemName) {
-                    default:
-                        executeCommand("poloz " + itemName);
-                        break;
-                    case GamePlan.ZBRAN:
-                        break;
-                    case GamePlan.KLICE:
-                        break;
-                }
-            break;
+        for (Item item : itemList) {
+            String itemName = item.getName();
+            switch (itemName) {
+                default:
+                    executeCommand("poloz " + itemName);
+                    break;
+                case GamePlan.ZBRAN:
+                    break;
+                case GamePlan.KLICE:
+                    break;
             }
+            break;
         }
+    }
 
 
-    public void dropItems2(){
+    public void dropItems2() {
         Set<String> itemList = game.getGamePlan().getInventory().getItemsInventory().keySet();
         Set<String> dropList = null;
         for (String item : itemList) {
-            if (!item.equals(GamePlan.ZBRAN) && !item.equals(GamePlan.KLICE)){
+            if (!item.equals(GamePlan.ZBRAN) && !item.equals(GamePlan.KLICE)) {
                 dropList.add(item);
             }
         }
 
-        for (String item : dropList){
-            executeCommand("poloz " +item);
+        for (String item : dropList) {
+            executeCommand("poloz " + item);
         }
 
     }
 
-    public void dropItems3(){
+    public void dropItems3() {
         Set<String> itemList = game.getGamePlan().getInventory().getItemsInventory().keySet();
-        boolean a = itemList.size()==1 && itemList.contains(GamePlan.ZBRAN);
-        boolean b = itemList.size()==1 && itemList.contains(GamePlan.KLICE);
-        boolean c = itemList.size()==2 && itemList.contains(GamePlan.KLICE) && itemList.contains(GamePlan.ZBRAN);
+        boolean a = itemList.size() == 1 && itemList.contains(GamePlan.ZBRAN);
+        boolean b = itemList.size() == 1 && itemList.contains(GamePlan.KLICE);
+        boolean c = itemList.size() == 2 && itemList.contains(GamePlan.KLICE) && itemList.contains(GamePlan.ZBRAN);
 
-        while(!itemList.isEmpty() && !a && !b && !c){
-            executeCommand("poloz " );
+        while (!itemList.isEmpty() && !a && !b && !c) {
+            executeCommand("poloz ");
         }
 
     }

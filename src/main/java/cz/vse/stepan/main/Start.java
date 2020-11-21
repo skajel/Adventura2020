@@ -47,21 +47,8 @@ public class Start extends Application
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        primaryStage.setResizable(false);
-        primaryStage.setTitle("Adventura");
-
-        FXMLLoader loader = new FXMLLoader();
         InputStream stream = getClass().getClassLoader().getResourceAsStream("scene.fxml");
-        Parent root = loader.load(stream);
-
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-
-        MainController controller = loader.getController();
-        IGame hra = new Game();
-        controller.init(hra);
-        primaryStage.show();
-}
+        MainController.makeWindow(stream);
+    }
 
 }
