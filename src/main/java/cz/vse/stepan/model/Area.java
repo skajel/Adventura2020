@@ -13,7 +13,7 @@ import java.util.*;
  * @author Jarmila Pavlíčková
  * @author Jan Říha
  * @author Ondřej Štěpán
- * @version LS 2020
+ * @version ZS 2020
  */
 public class Area
 {
@@ -36,13 +36,32 @@ public class Area
         this.items = new HashMap<>();
         this.people = new HashMap<>();
     }
-
+    /**
+     * Metoda vrací jméno předmětů a jejich instanci třídy {@link Item} z aktuální lokace.
+     *
+     * @return mapa předmětů
+     */
     public Map<String, Item> getItemList() {return items;}
 
+    /**
+     * Metoda vrací seznam východů třídy {@link Item} do kterých lze odejít.
+     *
+     * @return kolekce lokací
+     */
     public Collection<Area> getAreaList() {return Collections.unmodifiableCollection(exits);}
 
+    /**
+     * Metoda vrací jméno osoby a její instanci třídy {@link Person} z aktuální lokace.
+     *
+     * @return mapa osob
+     */
     public Map<String, Person> getPeopleList() {return people;}
 
+    /**
+     * Metoda vrací popis lokace.
+     *
+     * @return popis lokace
+     */
     public String getDescription()
     {
         return description;

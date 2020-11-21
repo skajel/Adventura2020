@@ -7,6 +7,7 @@
     <groupId>cz.vse.stepan</groupId>
     <artifactId>adventura</artifactId>
     <version>1.0.0</version>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

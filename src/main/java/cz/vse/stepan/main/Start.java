@@ -42,6 +42,11 @@ public class Start extends Application
             launch();
         }}
 
+    /**
+     * Metoda přepisuje metodu start v třídě {@link Application} a spustí novou hru v GUI v defaultním rozlišení.
+     *
+     * @param primaryStage stage, která se otevře
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         InputStream stream = getClass().getClassLoader().getResourceAsStream("scene.fxml");

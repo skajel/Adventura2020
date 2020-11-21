@@ -64,7 +64,7 @@ public class MainController {
     public void init(IGame game) {
         this.game = game;
         update();
-        textOutput.setText(game.getPrologue() + "\n\n");
+        textOutput.appendText(game.getPrologue() + "\n\n");
 
     }
 

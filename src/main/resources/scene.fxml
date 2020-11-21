@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane id="pane" stylesheets="lightstyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.stepan.MainController">
+<StackPane id="pane" stylesheets="style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.stepan.MainController">
    <VBox alignment="BOTTOM_LEFT">
       <children>
          <ImageView fx:id="imageTop" fitHeight="50.0" fitWidth="1280.0" nodeOrientation="INHERIT" pickOnBounds="true">
@@ -39,7 +39,7 @@
         <top>
             <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0">
                 <MenuBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0">
-                    <Menu styleClass="lightstyle.css" text="MENU">
+                    <Menu styleClass="style.css" text="MENU">
                   <Menu mnemonicParsing="false" text="Nová hra">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#set1920" text="1920X1080" />
