@@ -360,7 +360,7 @@ public class MainController {
      */
     public void set1280() throws IOException {
         executeCommand("konec\n\n");
-        InputStream str = getClass().getClassLoader().getResourceAsStream("scene1.fxml");
+        InputStream str = getClass().getClassLoader().getResourceAsStream("scene.fxml");
         makeWindow(str);
     }
 
