@@ -8,7 +8,8 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane id="pane" stylesheets="style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.vse.stepan.MainController">
+<StackPane id="pane" stylesheets="style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="cz.vse.stepan.MainController">
     <VBox alignment="BOTTOM_LEFT">
         <ImageView fx:id="imageTop" fitHeight="50.0" fitWidth="1280.0" nodeOrientation="INHERIT" pickOnBounds="true">
             <effect>
@@ -18,9 +19,9 @@
         </ImageView>
         <ImageView fx:id="imageMid" fitHeight="320.0" fitWidth="1280.0" nodeOrientation="INHERIT" pickOnBounds="true"
                    preserveRatio="true">
-           <effect>
-               <InnerShadow/>
-           </effect>
+            <effect>
+                <InnerShadow/>
+            </effect>
         </ImageView>
         <ImageView fx:id="imageBot" fitHeight="350.0" fitWidth="1280.0" nodeOrientation="INHERIT">
             <effect>
@@ -32,29 +33,34 @@
             <Image url="@wooden.jpg"/>
         </ImageView>
     </VBox>
-    <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
+    <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+                prefWidth="1280.0">
         <top>
             <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0">
-                <MenuBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0">
+                <MenuBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                         prefHeight="50.0" prefWidth="150.0">
                     <Menu text="MENU">
                         <Menu mnemonicParsing="false" text="Nová hra">
                             <MenuItem mnemonicParsing="false" onAction="#set1920" text="1920X1080"/>
                             <MenuItem mnemonicParsing="false" onAction="#set1600" text="1600X900"/>
                             <MenuItem mnemonicParsing="false" onAction="#set1280" text="1280X720"/>
                         </Menu>
-                        <MenuItem onAction="#getHint" text="Nápověda" />
-                  <MenuItem fx:id="winnable" mnemonicParsing="false" onAction="#winGame" text="Vyhrát" visible="false" />
+                        <MenuItem onAction="#getHint" text="Nápověda"/>
+                        <MenuItem fx:id="winnable" mnemonicParsing="false" onAction="#winGame" text="Vyhrát"
+                                  visible="false"/>
                     </Menu>
                 </MenuBar>
                 <VBox prefHeight="40.0" AnchorPane.leftAnchor="160.0">
                     <Label fx:id="locationName" textFill="WHITE">
-                  <font>
-                     <Font size="24.0" />
-                  </font></Label>
+                        <font>
+                            <Font size="24.0"/>
+                        </font>
+                    </Label>
                     <Label fx:id="locationDescription" textFill="WHITE">
-                    <font>
-                        <Font size="16.0" />
-                    </font></Label>
+                        <font>
+                            <Font size="16.0"/>
+                        </font>
+                    </Label>
                 </VBox>
                 <ImageView fx:id="settings" fitHeight="50.0" fitWidth="50.0" preserveRatio="true"
                            AnchorPane.rightAnchor="10.0">
@@ -68,8 +74,9 @@
                                        text="Vypnout"/>
                     </Menu>
                 </MenuBar>
-            <Circle fx:id="hackBtn" fill="RED" radius="10.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="15.0" />
-            <VBox prefHeight="50.0" prefWidth="100.0" AnchorPane.rightAnchor="300.0" />
+                <Circle fx:id="hackBtn" fill="RED" radius="10.0" stroke="BLACK" strokeType="INSIDE"
+                        AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="15.0"/>
+                <VBox prefHeight="50.0" prefWidth="100.0" AnchorPane.rightAnchor="300.0"/>
             </AnchorPane>
         </top>
         <left>
@@ -152,21 +159,21 @@
                 </GridPane>
             </SplitPane>
         </bottom>
-      <right>
-          <AnchorPane BorderPane.alignment="CENTER">
-              <VBox prefHeight="40.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">
-                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER"
-                         maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="verze 1.0.0"
-                         textFill="WHITE"/>
-                  <Label  alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity"
-                         prefWidth="150.0" text="autor: Ondřej Štěpán" textFill="WHITE">
-                      <font>
-                          <Font size="16.0"/>
-                      </font>
-                  </Label>
-              </VBox>
-          </AnchorPane>
-      </right>
+        <right>
+            <AnchorPane BorderPane.alignment="CENTER">
+                <VBox prefHeight="40.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">
+                    <Label alignment="CENTER_RIGHT" contentDisplay="CENTER"
+                           maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="verze 1.0.0"
+                           textFill="WHITE"/>
+                    <Label alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="-Infinity"
+                           prefWidth="150.0" text="autor: Ondřej Štěpán" textFill="WHITE">
+                        <font>
+                            <Font size="16.0"/>
+                        </font>
+                    </Label>
+                </VBox>
+            </AnchorPane>
+        </right>
     </BorderPane>
     <StackPane fx:id="settingsMenu" prefHeight="150.0" prefWidth="200.0" visible="false">
         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">

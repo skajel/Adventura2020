@@ -21,18 +21,16 @@ import java.util.List;
  * @author Ondřej Štěpán
  * @version ZS 2020
  */
-public class Start extends Application
-{
+public class Start extends Application {
     /**
      * Metoda pro spuštění celé aplikace.
      *
      * @param args parametry aplikace z příkazového řádku
      */
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         List<String> vstup = Arrays.asList(args);
 
-        if(vstup.contains("text")) {
+        if (vstup.contains("text")) {
 
             IGame game = new Game();
             TextUI textUI = new TextUI(game);
@@ -40,7 +38,8 @@ public class Start extends Application
 
         } else {
             launch();
-        }}
+        }
+    }
 
     /**
      * Metoda přepisuje metodu start v třídě {@link Application} a spustí novou hru v GUI v defaultním rozlišení.
